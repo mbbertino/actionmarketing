@@ -48,6 +48,14 @@ body {
 
 /* Custom page footer */
 .footer {
+
+	.contact {
+		border-bottom: 1px solid #e5e5e5;
+
+		.contact-header {
+			text-align: center;
+		}
+	}
 }
 
 /* Main marketing message and sign up button */
@@ -70,6 +78,7 @@ body {
 		// background: gray;
 		height: auto;
 		overflow: hidden;
+		border-bottom: 1px solid #e5e5e5;
 		
 		.services-header {
 			text-align: center;
@@ -90,6 +99,7 @@ body {
 		background: #e5e5e5;
 		height: auto;
 		overflow: hidden;
+		border-bottom: 1px solid #e5e5e5;
 
 		.about-header {
 			text-align: center;
