@@ -4,6 +4,12 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 @import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
 // endbower
 
+$brandblue:rgb(169, 214, 241); // Primary
+$brandyellow:rgb(242, 209, 49); //Secondary
+$brandblack:rgb(39, 36, 26);
+$brandred:rgb(243, 89, 73); //Accent
+$brandwhite:rgb(244, 244, 241);
+
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
@@ -12,9 +18,10 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 }
 
 /* Space out content a bit */
+
+
 body {
-    padding-top: 20px;
-    padding-bottom: 20px;    
+		font-family: 'Open Sans', sans-serif;  
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -25,13 +32,26 @@ body {
     padding-right: 15px;
 }
 
+.carousel-control {
+	opacity: 0;
+}
+
+.navbar-brand {
+	font-size: 30px;
+	font-style: italic;
+}
+
 /* Custom page header */
 .header {
-    border-bottom: 1px solid #e5e5e5;
+		padding: 20px 0px;
+		border-bottom: 2px solid $brandblue;
 
     .container-fluid {
     	// background: #e5e5e5;
 
+    	.navbar-right {
+    		font-size: 18px;
+    	}
     	a {
 	    	color: #000;    		
     	}
@@ -50,7 +70,7 @@ body {
 .footer {
 
 	.contact {
-		border-bottom: 1px solid #e5e5e5;
+		text-align: center;
 
 		.contact-header {
 			text-align: center;
@@ -65,20 +85,20 @@ body {
 }
 
 .jumbotron {
-	margin-bottom: 0px;
+	margin-top: 15px;
 	text-align: center;
 	padding: 0px;
+	margin-bottom: 15px;
 
 }
 
 /* Supporting marketing content */
 .marketing {
-
+		border-top: 2px solid $brandblue;
 	.services {
-		// background: gray;
 		height: auto;
 		overflow: hidden;
-		border-bottom: 1px solid #e5e5e5;
+		border-bottom: 2px solid $brandblue;
 		
 		.services-header {
 			text-align: center;
@@ -86,7 +106,7 @@ body {
 		
 		.service-block {
 			height: 300px;
-			margin-bottom: 30px;
+			margin: 15px 0;
 			padding: 0 15px;
 
 			.panel {
@@ -96,10 +116,16 @@ body {
 	}
 
 	.about {
-		background: #e5e5e5;
+		text-align: center;
+		
 		height: auto;
 		overflow: hidden;
-		border-bottom: 1px solid #e5e5e5;
+		border-bottom: 2px solid $brandblue;
+
+		.company-stmt {
+			float: none;
+			margin: 0 auto;
+		}
 
 		.about-header {
 			text-align: center;
@@ -107,8 +133,13 @@ body {
 	}
 }
 
-.content-wrapper {
-	border: 1px solid #e5e5e5;
+.carousel-inner {
+	min-height: 485px;
+
+	p {
+		float: none;
+		margin: 0 auto;
+	}
 }
 
 /* Responsive: Portrait tablets and up */
