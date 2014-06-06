@@ -9,6 +9,7 @@ $brandyellow:rgb(242, 209, 49); //Secondary
 $brandblack:rgb(39, 36, 26);
 $brandred:rgb(243, 89, 73); //Accent
 $brandwhite:rgb(244, 244, 241);
+$branddarkblue:rgb(90, 85, 150);
 
 .browsehappy {
     margin: 0.2em 0;
@@ -22,7 +23,7 @@ $brandwhite:rgb(244, 244, 241);
 
 body {
 	// background: $brandblack;
-	font-family: 'Open Sans', sans-serif;  
+	font-family: 'Lato', sans-serif; 
 }
 
 .header .container-fluid .icon-bar {
@@ -30,7 +31,7 @@ body {
 }
 
 .navbar-toggle {
-	margin-top: 24px;
+	margin-top: 29px;
 
 }
 
@@ -54,38 +55,68 @@ body {
 /* Custom page header */
 .header {
 		padding: 20px 0px;
-		border-bottom: 1px dotted $brandblue;
+		border-bottom: 4px double $brandblue;
 
     .container-fluid {
-    	// background: #e5e5e5;
+    	
 
     	.navbar-right {
+    		margin-top: 20px;
     		font-size: 18px;
     	}
     	a {
-	    	color: #000;    		
+    		text-transform: uppercase;    	
+	    	color: $brandblue;   
+
+	    	&:hover {
+	    		background: none;
+	    		color: $brandyellow;
+	    	} 		
     	}
 
     	.dropdown-menu {
-    		background: #e5e5e5;
-    	}
-
-    	.icon-bar {
-    		background: white;
+    		background: #fff;
     	}
     }
 }
 
 /* Custom page footer */
 .footer {
-	color: #fff;
-	margin-top: 35px;
-	background: $brandred;
+	// margin-top: 35px;
 
 	.foot-top {
+		color: #fff;
+		background: $brandblue;
+
+		ul {
+			padding: 20px 0px;
+			list-style: none;
+			margin-bottom: 0px;
+
+			li {
+				cursor: pointer;
+				text-transform: uppercase;
+				font-size: 14px;
+				display: inline-block;
+				padding: 5px 10px;
+
+				&:hover	{
+					color: $brandyellow;
+				}
+			}
+		}
+
+		.line {
+			background: #fff;
+			height: 1px;
+		}
 	}
 
+
 	.foot-bot {
+		border-top: 4px double $brandblue;
+		font-size: 12px;
+		background: #fff;
 		text-align: center;
 
 	}
@@ -98,25 +129,31 @@ body {
 }
 
 .jumbotron {
+	text-transform: uppercase;
 	margin-top: 35px;
 	text-align: center;
 	padding: 0px;
-	margin-bottom: 35px;
+	margin-bottom: 0px;
 
+}
+
+h3 {
+	color: $brandblue;
 }
 
 /* Supporting marketing content */
 .marketing {
-	border-top: 1px dotted $brandblue;
+	// border-top: 4px double $brandblue;
 
 	.services {
 		height: auto;
 		overflow: hidden;
 		padding-bottom: 20px;
-		border-bottom: 1px dotted $brandblue;
-		
+		border-bottom: 4px double $brandblue;
+
 		.services-header {
-			text-align: center;
+			// color: $brandblue;
+			// text-align: center;
 		}
 		
 		.service-block {
@@ -126,35 +163,31 @@ body {
 
 			.panel {
 				height: 100%;
+
+				&:hover {
+					cursor: pointer;
+					box-shadow: 0px 0px 5px $brandyellow;
+				}
 			}
+			
 		}
 	}
 
 	.about {
+		text-transform: uppercase;
+		font-size: 20px;
+		letter-spacing: 2px;
 		text-align: center;
 		padding: 35px 0;
 		margin-bottom: 15px;
 		height: auto;
 		overflow: hidden;
-		border-bottom: 1px dotted $brandblue;
+		border-bottom: 4px double $brandblue;
 
 		.company-stmt {
 			float: none;
 			margin: 0 auto;
 		}
-
-		.about-header {
-			text-align: center;
-		}
-	}
-}
-
-.carousel-inner {
-	min-height: 485px;
-
-	p {
-		float: none;
-		margin: 0 auto;
 	}
 }
 
