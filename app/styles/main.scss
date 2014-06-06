@@ -21,8 +21,17 @@ $brandwhite:rgb(244, 244, 241);
 
 
 body {
-	background: $brandblack;
+	// background: $brandblack;
 	font-family: 'Open Sans', sans-serif;  
+}
+
+.header .container-fluid .icon-bar {
+	background: $brandblack;
+}
+
+.navbar-toggle {
+	margin-top: 24px;
+
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -44,7 +53,7 @@ body {
 
 /* Custom page header */
 .header {
-		padding: 0px;
+		padding: 20px 0px;
 		border-bottom: 1px dotted $brandblue;
 
     .container-fluid {
@@ -89,7 +98,7 @@ body {
 }
 
 .jumbotron {
-	// margin-top: 35px;
+	margin-top: 35px;
 	text-align: center;
 	padding: 0px;
 	margin-bottom: 35px;
