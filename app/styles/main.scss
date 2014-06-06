@@ -21,7 +21,8 @@ $brandwhite:rgb(244, 244, 241);
 
 
 body {
-		font-family: 'Open Sans', sans-serif;  
+	background: $brandblack;
+	font-family: 'Open Sans', sans-serif;  
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -43,8 +44,8 @@ body {
 
 /* Custom page header */
 .header {
-		padding: 20px 0px;
-		border-bottom: 2px solid $brandblue;
+		padding: 0px;
+		border-bottom: 1px dotted $brandblue;
 
     .container-fluid {
     	// background: #e5e5e5;
@@ -68,13 +69,16 @@ body {
 
 /* Custom page footer */
 .footer {
+	color: #fff;
+	margin-top: 35px;
+	background: $brandred;
 
-	.contact {
+	.foot-top {
+	}
+
+	.foot-bot {
 		text-align: center;
 
-		.contact-header {
-			text-align: center;
-		}
 	}
 }
 
@@ -85,20 +89,22 @@ body {
 }
 
 .jumbotron {
-	margin-top: 15px;
+	// margin-top: 35px;
 	text-align: center;
 	padding: 0px;
-	margin-bottom: 15px;
+	margin-bottom: 35px;
 
 }
 
 /* Supporting marketing content */
 .marketing {
-		border-top: 2px solid $brandblue;
+	border-top: 1px dotted $brandblue;
+
 	.services {
 		height: auto;
 		overflow: hidden;
-		border-bottom: 2px solid $brandblue;
+		padding-bottom: 20px;
+		border-bottom: 1px dotted $brandblue;
 		
 		.services-header {
 			text-align: center;
@@ -117,10 +123,11 @@ body {
 
 	.about {
 		text-align: center;
-		
+		padding: 35px 0;
+		margin-bottom: 15px;
 		height: auto;
 		overflow: hidden;
-		border-bottom: 2px solid $brandblue;
+		border-bottom: 1px dotted $brandblue;
 
 		.company-stmt {
 			float: none;
@@ -145,7 +152,11 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .container {
-        max-width: 960px;
+    	padding-left: 0px;
+    	padding-right: 0px;
+
+    	background: #fff;
+      max-width: 960px;
     }
 
     /* Remove the padding we set earlier */
