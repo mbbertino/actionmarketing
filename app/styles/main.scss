@@ -135,6 +135,15 @@ body {
 	padding: 0px;
 	margin-bottom: 0px;
 
+	.carousel-inner {
+
+		.item {
+			
+			img {
+				height: 500px;
+			}
+		}
+	}
 }
 
 h3 {
@@ -153,7 +162,7 @@ h3 {
 
 		.services-header {
 			// color: $brandblue;
-			// text-align: center;
+			text-align: center;
 		}
 		
 		.service-block {
