@@ -9,7 +9,7 @@ $brandyellow:rgb(242, 209, 49); //Secondary
 $brandblack:rgb(39, 36, 26);
 $brandred:rgb(243, 89, 73); //Accent
 $brandwhite:rgb(244, 244, 241);
-$branddarkblue:rgb(90, 85, 150);
+$branddarkblue:rgb(20, 85, 150);
 
 .browsehappy {
     margin: 0.2em 0;
@@ -22,7 +22,6 @@ $branddarkblue:rgb(90, 85, 150);
 
 
 body {
-	// background: $brandblack;
 	font-family: 'Lato', sans-serif; 
 	color: $brandblack;
 }
@@ -33,15 +32,14 @@ body {
 
 .navbar-toggle {
 	margin-top: 29px;
+
+	@media screen and (max-width: 400px) {
+		margin-top: 11px;    		
+	}
 }
 
 .carousel-control {
 	opacity: 0;
-}
-
-.navbar-brand {
-	font-size: 30px;
-	font-style: italic;
 }
 
 /* Custom page header */
@@ -49,17 +47,23 @@ body {
 		padding: 20px 0px 0px;
 		border-bottom: 4px double $brandblack;
 
-		h1	{
-			padding-bottom: 0px;
-			margin-bottom: 0px;
+		.header-logo {
+			height: 85px;
+
+			@media screen and (max-width: 400px) {
+    		height: 50px;
+			}
 		}
 
     .container-fluid {
     	
-
     	.navbar-right {
     		margin-top: 25px;
     		font-size: 14px;
+
+    		@media screen and (max-width: 400px) {
+    			margin-top: 0px;    		
+				}
 
     	}
     	a {
@@ -69,7 +73,7 @@ body {
 
 	    	&:hover {
 	    		background: none;
-		    	color: $brandblue;   
+		    	color: $branddarkblue;   
 	    	} 		
     	}
 
@@ -82,16 +86,24 @@ body {
 /* Custom page footer */
 .footer {
 	// margin-top: 35px;
+	padding: 0px;
+	border-top: 4px double $brandblack;
 
 	.foot-top {
 		padding: 15px 0px 0px;
 		color: #fff;
-		background: $brandblack;
+		background: $branddarkblue;
+
+		.logo-big {
+			height: 150px;
+			margin-top: 10px;
+		}
 
 		ul {
 			padding: 20px 0px;
 			list-style: none;
 			margin-bottom: 0px;
+
 
 			li {
 				cursor: pointer;
@@ -100,7 +112,12 @@ body {
 				padding: 5px 0px;
 
 				&:hover	{
-					color: $brandblue;
+					color: $branddarkblue;
+				}
+
+				small {
+					font-size: 12px;
+					display: block;
 				}
 			}
 		}
@@ -138,11 +155,17 @@ body {
 	margin-bottom: 0px;
 
 	.carousel-inner {
+		background: $branddarkblue;
 
 		.item {
 			
 			img {
 				min-height: 200px;
+				max-height: 500px;
+
+				&.target{
+					margin: 0 auto;
+				}
 			}
 		}
 	}
@@ -152,19 +175,86 @@ h3 {
 	font-weight: bold;	
 }
 
+.all-service-head {
+	padding: 15px 0px;
+	
+	.all-services-header {
+		padding-left: 30px;
+	}
+
+	.target-small {
+		padding-right: 30px;
+	}
+}
+
+.all-services {
+	height: 550px;
+
+	.panel-heading {
+		background: none;
+		cursor: pointer;
+		border-radius: 0px;
+
+		&:hover {		
+			color: #fff;
+			background: $branddarkblue;
+		}
+
+		h4 {
+			// border-bottom: 1px solid $branddarkblue;			
+		}
+	}
+
+	.panel {
+		padding: 0px;
+		box-shadow: none;
+		border: none;
+		border-top: 1px solid $branddarkblue;
+		border-bottom: 1px solid $branddarkblue;
+		border-radius: 0px;
+
+		.panel-collapse {
+
+			.panel-body {
+				border: none;				
+				height: 300px;
+			}
+		}
+	}
+
+	.panel-body {
+	}
+}
+
 /* Supporting marketing content */
 .marketing {
 	// border-top: 4px double $brandblue;
 	.services-header {
 		border-bottom: 4px double $brandblack;
+		margin-bottom: 0px;
+		padding-left: 30px;
+		text-transform: uppercase;
 		// text-align: center;
+
+		small {
+			font-size: 14px;
+			cursor: pointer;
+
+			&:hover {
+				color: $branddarkblue;
+
+			}
+			@media screen and (max-width: 400px) {  
+			display: none;			
+			}
+		}
 	}
 
 	.services {
 		height: auto;
 		overflow: hidden;
-		padding: 0 0 20px 0;
-		border-bottom: 4px double $brandblack;
+		padding: 0;
+		
 
 		.service-blocks {
 			padding: 0;
@@ -179,6 +269,8 @@ h3 {
 				border: none;
 				height: 100%;
 				box-shadow: none;
+				margin-bottom: 0px;
+				border-radius: 0px;
 
 				h3 {
 					border-bottom: 2px solid $brandblack;
@@ -186,7 +278,12 @@ h3 {
 
 				&:hover {
 					cursor: pointer;
-					box-shadow: 0px 0px 5px $brandblue;
+					color: #fff;
+					background: $branddarkblue;
+
+					h3 {
+						border-bottom: 2px solid #fff;
+					}
 				}
 			}
 			
@@ -221,7 +318,6 @@ h3 {
 	.about {
 		display: none;
 	}
-    // this is where the media break changes go
 }
 
 /* Responsive: Portrait tablets and up */
