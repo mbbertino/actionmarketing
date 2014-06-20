@@ -72,14 +72,13 @@ body {
 				}
 
     	}
-    	a {
-    		padding-bottom: 0px;
+    	a {    		
     		text-transform: uppercase;    	
-    		color: $brandblack;
+    		color: $branddarkblue;
 
 	    	&:hover {
-	    		background: none;
-		    	color: $branddarkblue;   
+	    		background: $branddarkblue;
+		    	color: #fff;
 	    	} 		
     	}
 
@@ -101,8 +100,8 @@ body {
 		background: $branddarkblue;
 
 		.logo-big {
-			height: 150px;
-			margin-top: 10px;
+			height: 140px;
+			margin-top: 15px;
 		}
 
 		ul {
@@ -182,6 +181,63 @@ body {
 }
 
 
+.login-block {
+	float: none;
+	margin: 30px auto;  
+	background: $brandwhite;
+	overflow: hidden;
+	box-shadow: 0px 0px 10px #B5B5B5;
+
+	.login-logo-box {
+		text-align: center;
+		margin: 30px 0px;
+
+		.login-logo {
+			height: 100px;
+		}
+	}
+
+	.login-title {
+		text-align: center;
+		font-weight: bold;
+		color: $branddarkblue;
+		background: #fff;
+		box-shadow: 0px 0px 10px #B5B5B5;
+		z-index: 10;
+
+		h2 {
+			margin: 15px 0;
+		}
+	}
+
+	.login-body {
+		box-shadow: 0px 0px 10px #B5B5B5;
+		padding: 15px 30px;
+		background: #fff;
+		margin-bottom: 15px;
+
+		input {
+			padding: 10px;
+			margin: 15px 0px;
+		}
+
+		.login {
+			text-align: center;
+			margin: 15px 0px;
+			padding: 10px;
+			background: $branddarkblue;
+			color: #fff;
+
+			&:hover {
+				cursor: pointer;
+				background: #fff;
+				color: $branddarkblue;
+				outline: 1px solid $branddarkblue;
+			}
+		}
+	}
+}
+
 .all-services {
 	padding-top: 15px; 
 
@@ -230,6 +286,18 @@ body {
 		margin-top: 30px;
 		width: 200px;	
 
+
+		a {
+			color: $branddarkblue;
+			padding: 10px;
+
+			&:hover {
+				background: $branddarkblue;
+				color: #fff;
+				text-decoration: none;
+			}
+		}
+
 		&.affix {
 			margin-top: 30px;
 			top: 0px;
@@ -243,6 +311,7 @@ body {
 		}
 
 		.panel {
+			margin: 10px 0px;
 			border: none;
 			box-shadow: none;
 		}		

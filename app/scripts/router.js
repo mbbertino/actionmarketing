@@ -4,7 +4,7 @@ var MainRouter = Backbone.Router.extend({
     "": "home",
     "services": "services",
     "services/:id": "services",
-    "client": "client",
+    "client-login": "client",
     "contact": "contact"
   },
 
@@ -21,7 +21,9 @@ var MainRouter = Backbone.Router.extend({
   },
 
   client: function() {
+    new LoginView({
 
+    })
   },
 
   contact: function() {
