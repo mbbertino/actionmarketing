@@ -7,6 +7,10 @@ var LoginView = Backbone.View.extend({
   initialize: function() {
     $('.content-wrapper').html(this.el)
     this.render()
+
+
+    $('.link').removeClass('link-border')
+    $('.link-client').addClass('link-border')
   },
 
   render: function() {

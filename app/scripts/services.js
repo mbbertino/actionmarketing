@@ -12,6 +12,10 @@ var ServicesView = Backbone.View.extend({
     $('.content-wrapper').html(this.el)
     this.render()
 
+
+    $('.link').removeClass('link-border')
+    $('.link-services').addClass('link-border')
+
     doThisStuffOnScroll = function() {
       var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       if (scrollTop > 140) {

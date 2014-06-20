@@ -9,6 +9,9 @@ var AppView = Backbone.View.extend({
   initialize: function() {
     $('.content-wrapper').html(this.el)
     this.render()
+
+    $('.link').removeClass('link-border')
+    $('.link-home').addClass('link-border')
   },
 
   services: function() {
