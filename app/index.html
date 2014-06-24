@@ -48,6 +48,7 @@
 			            <li class="link link-services"><a  href="#services" role="button">Services</a></li>
 			            <li class="link link-client"><a  href="#client-login" role="button">Client Login</a></li>
 			            <li class="link link-about"><a  href="#" role="button">About</a></li>
+			            <li class="link link-quote action"><a  href="#quote" role="button">request a quote</a></li>
 			          </ul>				          
 			        </div><!-- /.nav-collapse -->
 			      </div>
@@ -58,19 +59,20 @@
 
           <div class="footer col-xs-12">
           	<div class="foot-top col-xs-12">
-          		<div class="col-sm-2">
+          		<div class="col-sm-3 logo-section">
           			<img class="logo-big" src="images/targetSmall.png">
+          			<button class="col-xs-12 btn btn-primary">Request a quote</button>
           		</div>
-          		<div class="col-sm-5">
+          		<div class="col-sm-4 foot-copy">
           			<h4>Contact Us</h4>
           			<div class="line"></div>
           			<ul>
             			<li class="phone">561.543.7466</li>
             			<li class="email">info@actionmarketing.com</li>
-            			<li class="address">194 Jones Creek Drive Jupiter FL, 33458 <small>view on map</small></li>
+            			<li class="address">194 Jones Creek Drive Jupiter FL, 33458</li>
           			</ul>
           		</div>
-          		<div class="col-sm-5">
+          		<div class="col-sm-5 foot-copy">
           			<h4>Our Mission</h4>
           			<div class="line"></div>
           			<p>We provide the finest mail house and fulfillment services for retail and wholesale businesses. Last year, we shipped over 11 million pieces of mail from our Jupiter FL facility for more than 100 different clients located from Key West to Toronto Canada.</p>
@@ -81,7 +83,6 @@
           	</div>
           </div>
         </div>
-
 
 				<script type="text/template" id="appview-template">
 					<div class="jumbotron">
@@ -97,7 +98,7 @@
 				        <div class="item active">
 				        	<img src="images/targetMedium.png" class="target">
 				        	<div class="carousel-caption">
-				        		<h2 class="">A full-service mail house located in Palm Beach County since 1987.</h2>				        		 
+				        		<h2 class="">A full-service mail house located in Palm Beach County since 1987.</h2>        		 
 				        	</div>
 				        </div>
 				        <div class="item"><img src="images/Building.jpg"></div>
@@ -113,11 +114,12 @@
 				      </a>
 				    </div>
 				  </div>
+
 				  <div class="marketing">
 						<h2 class="services-header col-xs-12">Our Services <small class="js-all-services">all services</small></h2>
 				  	<div class="services col-xs-12">
 				  		<div class="service-blocks col-xs-12">
-				        <div class="col-sm-4 service-block">
+				        <div class="col-sm-4 service-block js-nav-one">
 				        	<div class="panel panel-default">
 				        		<div class="panel-body">
 				        			<h3 class="service-title">Direct Mail</h3>
@@ -128,7 +130,7 @@
 				        		</div>
 				        	</div>
 				        </div>				        
-				        <div class="col-sm-4 service-block">
+				        <div class="col-sm-4 service-block js-nav-two">
 				        	<div class="panel panel-default">
 				        		<div class="panel-body">
 				        			<h3 class="service-title">Fulfillment Services</h3>
@@ -139,7 +141,7 @@
 				        		</div>
 				        	</div>
 				        </div>
-				        <div class="col-sm-4 service-block">
+				        <div class="col-sm-4 service-block js-nav-three">
 				        	<div class="panel panel-default">
 				        		<div class="panel-body">
 				        			<h3 class="service-title">Database Services</h3>
@@ -154,7 +156,6 @@
 				  	</div>
 				  </div>
 				</script>
-
 				
 				<script type="text/template" id="services-template">
 					<div class="all-services col-xs-12">
@@ -212,6 +213,9 @@
 								      </div>
 								    </div>
 								  </div>
+									<div class="col-xs-12" style="padding-left: 10px;">
+									  <button class="btn btn-primary">Request a quote</button>
+									</div>
 								</div>							
 							</div>
 						</div>					
@@ -366,8 +370,8 @@
 							</div>
 							<div class="col-xs-12 login-body">
 								<input class="username col-xs-12" placeholder="USERNAME"></input>
-								<input class="password col-xs-12" placeholder="PASSWORD"></input>
-								<div class="col-xs-12 login">LOGIN</div>
+								<input class="password col-xs-12" type='password' placeholder="PASSWORD"></input>
+								<div class="col-xs-12 login js-login">LOGIN</div>
 							</div>
 						</div>
 					</div>					
@@ -383,6 +387,9 @@
         <script src="bower_components/backbone/backbone.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
+
+        <!-- Parse SDK -->
+        <script src="//www.parsecdn.com/js/parse-1.2.17.min.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
@@ -414,6 +421,7 @@
         <script src="scripts/appview.js"></script>
         <script src="scripts/services.js"></script>
         <script src="scripts/login.js"></script>
+        <script src="scripts/fileportal.js"></script>
         <script src="scripts/router.js"></script>
         <!-- endbuild -->
 </body>

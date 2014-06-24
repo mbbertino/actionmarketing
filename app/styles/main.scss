@@ -54,7 +54,7 @@ body {
 		border-bottom: 4px double $brandblack;
 
 		.header-logo {
-			height: 85px;
+			height: 65px;
 
 			@media screen and (max-width: 400px) {
     		height: 50px;
@@ -64,7 +64,7 @@ body {
     .container-fluid {
     	
     	.navbar-right {
-    		margin-top: 25px;
+    		margin-top: 10px;
     		font-size: 14px;
 
     		@media screen and (max-width: 400px) {
@@ -75,6 +75,21 @@ body {
     	.link-border {
     		border-bottom: 2px solid $branddarkblue;
     	}
+
+    	.action {
+    		background: $branddarkblue;
+
+    		a {
+	    		color: #fff;    			
+
+	    		&:hover {
+	    			background: #fff;
+	    			color: $branddarkblue;
+	    			outline: 1px solid $branddarkblue;
+	    		}
+    		}
+    	}
+
     	a {
     		letter-spacing: 1px;
     		text-transform: uppercase;    	
@@ -99,13 +114,39 @@ body {
 	border-top: 4px double $brandblack;
 
 	.foot-top {
-		padding: 15px 0px 0px;
+		padding: 15px 0px;
 		color: #fff;
 		background: $branddarkblue;
 
+		.logo-section {
+			text-align: center;
+			overflow: hidden;
+
+			.btn {
+				text-transform: uppercase;
+				font-size: 14px;
+				border-radius: 0px;
+				border-color: #fff;
+				background: $branddarkblue;
+
+				&:hover {
+					background: #fff;
+					color: $branddarkblue;
+				} 
+			}
+		}
 		.logo-big {
-			height: 140px;
+			width: 100%;
+			margin-bottom: 15px;
 			margin-top: 15px;
+		}
+
+		.foot-copy {
+			margin-top: 40px;
+
+			@media screen and (max-width: 400px) {
+    		margin-top: 0px;
+			}
 		}
 
 		ul {
@@ -121,7 +162,7 @@ body {
 				padding: 5px 0px;
 
 				&:hover	{
-					color: $branddarkblue;
+					color: $brandyellow;
 				}
 
 				small {
@@ -258,7 +299,7 @@ body {
 }
 
 .all-services {
-	padding-top: 15px; 
+	padding: 15px; 
 
 	.target-box {
 		text-align: center;
@@ -305,6 +346,25 @@ body {
 		margin-top: 30px;
 		width: 200px;	
 
+		@media screen and (max-width: 800px) {
+    	display: none;
+		}
+
+
+		.btn {
+			margin-top: 15px;
+			text-transform: uppercase;
+			font-size: 14px;
+			border-radius: 0px;
+			border-color: #fff;
+			background: $branddarkblue;
+
+			&:hover {
+				outline: 1px solid $branddarkblue;
+				background: #fff;
+				color: $branddarkblue;
+			} 
+		}
 
 		a {
 			color: $branddarkblue;
@@ -330,7 +390,7 @@ body {
 		}
 
 		.panel {
-			margin: 10px 0px;
+			margin: 20px 0px;
 			border: none;
 			box-shadow: none;
 		}		
