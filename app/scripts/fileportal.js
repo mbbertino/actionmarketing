@@ -12,25 +12,49 @@ var FilePortalView = Backbone.View.extend({
 
     $('.link').removeClass('link-border')
     $('.link-client').addClass('link-border')
+
+    var query = new Parse.Query('Files');
+
+    query.find({
+      success: function(files) {
+        _.each(files, function(file) {
+          new FileView({
+            model: file
+          })
+        })
+      }
+    })
   },
 
   save: function() {
-    var fileUploadControl = $("#profilePhotoFileUpload")[0];
+    var fileUploadControl = $("#file-upload-input")[0];
     if (fileUploadControl.files.length > 0) {
       var file = fileUploadControl.files[0];
-      var name = "photo.jpg";
-
+      var name = file.name;
       var parseFile = new Parse.File(name, file);
     }
 
-    var newFile = new File()
-    newFile.set('profilePic', parseFile);
-    newFile.set('client', Parse.User.current());
-    newFile.save(null, {
-      success: function(results) {
-        alert("Woot!!")
-      }
-    })
+    parseFile.save().then(function() {
+      var newFile = new LoadedFile()
+      var now = new Date().getTime();
+      newFile.set('file', parseFile);
+      newFile.set('fileName', name);
+      newFile.set('tStamp', now);
+      newFile.set('clientName', Parse.User.current().attributes.username);
+
+      var fileACL = new Parse.ACL(Parse.User.current())
+      fileACL.setRoleReadAccess('Admin', true)
+      fileACL.setRoleWriteAccess('Admin', true)
+
+      newFile.setACL(fileACL)
+      newFile.save(null, {
+        success: function(results) {
+          alert("File succesfully uploaded.")
+        }
+      })
+    }, function(error) {
+      alert("file unable to upload")
+    });
   },
 
   render: function() {

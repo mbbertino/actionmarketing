@@ -4,7 +4,7 @@ var MainRouter = Backbone.Router.extend({
     "": "home",
     "services": "services",
     "services/:id": "services",
-    "client-login": "client",
+    "client-login": "login",
     "client-login/:user": "fileUpload",
     "contact": "contact"
   },
@@ -21,16 +21,26 @@ var MainRouter = Backbone.Router.extend({
     })
   },
 
-  client: function() {
-    new LoginView({
-
-    })
+  login: function() {
+    if (Parse.User.current()) {
+      window.router.navigate("/client-login/" + Parse.User.current().attributes.username, {
+        trigger: true
+      });
+    } else {
+      new LoginView()
+    }
   },
 
-  fileUpload: function(user) {
-    new FilePortalView({
-      model: user
-    })
+  fileUpload: function() {
+    if (Parse.User.current()) {
+      new FilePortalView({
+        model: Parse.User.current()
+      })
+    } else {
+      window.router.navigate("/client-login", {
+        trigger: true
+      });
+    }
   },
 
   contact: function() {

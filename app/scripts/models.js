@@ -1,5 +1,5 @@
-var File = Parse.Object.extend("Files");
+var LoadedFile = Parse.Object.extend("Files");
 
-var FilesCollection = Parse.Collection.extend({
-  model: File
+var LoadedFileCollection = Parse.Collection.extend({
+  model: LoadedFile
 });

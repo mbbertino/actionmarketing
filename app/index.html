@@ -8,8 +8,7 @@
         <title>actionmarketing</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <link rel="shortcut icon" href="/favicon.ico">
-        <script src="//www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+        <link rel="shortcut icon" href="/favicon.ico">        
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css styles/vendor.css -->
         <!-- bower:css -->
@@ -21,9 +20,9 @@
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
-        
         <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
 
+        <script src="//www.parsecdn.com/js/parse-1.2.18.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 10]>
@@ -380,22 +379,31 @@
 
 				<script type="text/template" id="fileportal-template">
 					<div class="col-xs-12">
-							<input type="file" id="profilePhotoFileUpload">						
+							<input type="file" id="file-upload-input">	
 							<button class="js-upload">Upload File</button>
 					</div>					
 				</script>
+				<a href=""></a>
+				<script type="text/template" id="file-view-template">
+					<div class="col-xs-12">
+						<h4><%= this.model.get('clientName')%></h4>	
+						<h4><a href="<%= this.model.attributes.file._url %>"><%= this.model.get('fileName') %></a></h4>
+						<h4>Upload Date: <%=moment(this.model.createdAt).format("MMM/D/YYYY hh:mm A") %> </h4>
+						<button>Delete</button>
+						<button>Download</button>					
+					</div>					
+				</script>				
 
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
-        <script src="bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js"></script>
         <script src="bower_components/underscore/underscore.js"></script>
         <script src="bower_components/backbone/backbone.js"></script>
+        <script src="bower_components/moment/moment.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
-
         
-
+        <script src="//www.parsecdn.com/js/parse-1.2.18.min.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
@@ -424,12 +432,13 @@
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
         <script src="scripts/models.js"></script>
-        <script src="scripts/fileportal.js"></script>
         <script src="scripts/router.js"></script>
         <script src="scripts/main.js"></script>
         <script src="scripts/appview.js"></script>
         <script src="scripts/services.js"></script>
         <script src="scripts/login.js"></script>
+        <script src="scripts/fileportal.js"></script>
+        <script src="scripts/fileview.js"></script>
         <!-- endbuild -->
 </body>
 </html>
