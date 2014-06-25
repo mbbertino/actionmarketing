@@ -376,19 +376,25 @@
 						</div>
 					</div>					
 				</script>
-
 				<script type="text/template" id="fileportal-template">
-					<div class="col-xs-12">
-							<input type="file" id="file-upload-input">	
-							<button class="js-upload">Upload File</button>
+					<div class="col-xs-12 file-upload-container ">
+						<h3 class="pull-left">Welcome: <%= Parse.User.current().attributes.username %><small> Upload A File Below</small></h3>
+						<button class="js-logout logout pull-right">LOGOUT</button>
+						<div class="upload-section">
+							<input class="col-xs-12 file-upload-input" type="file" id="file-upload-input">	
+							<button class="js-upload col-xs-12">Upload File</button>
+						</div>						
 					</div>					
+					<div class="file-list col-xs-12">
+					<h2>Client Files</h2>					
+						<!-- This is where the Files will go -->
+					</div>
 				</script>
-				<a href=""></a>
 				<script type="text/template" id="file-view-template">
 					<div class="col-xs-12">
-						<h4><%= this.model.get('clientName')%></h4>	
-						<h4><a href="<%= this.model.attributes.file._url %>"><%= this.model.get('fileName') %></a></h4>
-						<h4>Upload Date: <%=moment(this.model.createdAt).format("MMM/D/YYYY hh:mm A") %> </h4>
+						<div><%= this.model.get('clientName')%></div>	
+						<div><a href="<%= this.model.attributes.file._url %>"><%= this.model.get('fileName') %></a></div>
+						<div>Upload Date: <%=moment(this.model.createdAt).format("MMM/D/YYYY hh:mm A") %> </div>
 						<button>Delete</button>
 						<button>Download</button>					
 					</div>					

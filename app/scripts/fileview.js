@@ -1,5 +1,6 @@
 var FileView = Backbone.View.extend({
 
+
   renderedTemplate: _.template($('#file-view-template').text()),
 
   events: {
@@ -7,7 +8,7 @@ var FileView = Backbone.View.extend({
   },
 
   initialize: function() {
-    $('.content-wrapper').append(this.el)
+    $('.file-list ').append(this.el)
     this.render()
     console.log(this.model)
   },

@@ -1,5 +1,7 @@
 var FilePortalView = Backbone.View.extend({
 
+  className: 'upload-wrapper col-xs-12',
+
   renderedTemplate: _.template($('#fileportal-template').text()),
 
   events: {
