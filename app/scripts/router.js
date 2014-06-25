@@ -5,6 +5,7 @@ var MainRouter = Backbone.Router.extend({
     "services": "services",
     "services/:id": "services",
     "client-login": "client",
+    "client-login/:user": "fileUpload",
     "contact": "contact"
   },
 
@@ -23,6 +24,12 @@ var MainRouter = Backbone.Router.extend({
   client: function() {
     new LoginView({
 
+    })
+  },
+
+  fileUpload: function(user) {
+    new FilePortalView({
+      model: user
     })
   },
 
