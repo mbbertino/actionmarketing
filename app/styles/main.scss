@@ -209,8 +209,8 @@ body {
 				margin: 10px 0px 0px;
 				text-transform: uppercase;
 
-				h3 {
-					margin: 10px 0;
+				h4 {
+					margin: 0px;
 
 					a {
 
@@ -221,20 +221,20 @@ body {
 					}
 				}
 				span {
-					margin: 0px 30px 0px 0px;					
-					display: inline-block;
+					font-size: 12px;
+					margin: 0px 30px 0px 0px;
 				}
 			}
 
 			.icon-box {
-				margin: 10px 0px;
-				padding: 5px 15px;
+				margin: 5px 0px;
+				padding: 5px 0px;
 				border-right: 1px solid $branddarkblue;
 
 				.file-icons {
 					color: $branddarkblue;
-					font-size: 32px;
-					margin: 0px 10px;
+					font-size: 24px;
+					
 
 					&:hover {
 						cursor:pointer;

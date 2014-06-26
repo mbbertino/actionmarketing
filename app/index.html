@@ -402,7 +402,7 @@
 					</div>					
 					<div class="file-list col-xs-12">
 						<div id="file-list">
-						<input placeholder="Search by client name/date/filename" class="pull-right search">
+						<input placeholder="Search by client/date/filename" class="pull-right search">
 						<h2>Files:</h2>
 							<ul class="file-list-box list">						
 								<!-- This is where the Files will go -->
@@ -412,14 +412,14 @@
 				</script>
 				<script type="text/template" id="file-view-template">
 					<div class="col-xs-12 file-outer-box">
-						<div class="icon-box col-xs-2">
+						<div class="icon-box col-xs-1">
 							<a href="<%= this.model.attributes.file._url %>"><i class="typcn typcn-download file-icons"></i></a>
 							<i class="typcn typcn-trash file-icons"></i>
 						</div>
-						<div class="file-inner-box col-xs-10">
+						<div class="file-inner-box col-xs-11">
+							<h4 class="fileName"><a href="<%= this.model.attributes.file._url %>"><%= this.model.get('fileName') %></a></h4>
 							<span >Client: <strong class="name"><%= this.model.get('clientName')%></strong></span>	
 							<span class="date">Uploaded: <strong><%=moment(this.model.createdAt).format("MM/D/YY hh:mm A")%></strong></span>
-							<h3 class="fileName"><a href="<%= this.model.attributes.file._url %>"><%= this.model.get('fileName') %></a></h3>
 						</div>
 					</div>					
 				</script>				
