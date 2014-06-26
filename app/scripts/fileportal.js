@@ -5,7 +5,8 @@ var FilePortalView = Backbone.View.extend({
   renderedTemplate: _.template($('#fileportal-template').text()),
 
   events: {
-    "click .js-upload": "save"
+    "click .js-upload": "save",
+    "click .js-logout": "logout"
   },
 
   initialize: function() {
@@ -33,6 +34,13 @@ var FilePortalView = Backbone.View.extend({
         })
       }
     })
+  },
+
+  logout: function() {
+    Parse.User.logOut()
+    window.router.navigate("/client-login", {
+      trigger: true
+    });
   },
 
   save: function() {
