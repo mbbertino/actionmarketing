@@ -12,6 +12,9 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css styles/vendor.css -->
         <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/typicons/src/font/typicons.min.css" />
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.css" />
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css(.tmp) styles/main.css -->
@@ -376,36 +379,59 @@
 						</div>
 					</div>					
 				</script>
+
 				<script type="text/template" id="fileportal-template">
 					<div class="col-xs-12 file-upload-container ">
-						<h3 class="pull-left">Welcome: <%= Parse.User.current().attributes.username %><small> Upload A File Below</small></h3>
+						<h2 class="pull-left">Welcome: <%= Parse.User.current().attributes.username %><small> Upload A File Below</small></h2>
 						<button class="js-logout logout pull-right">LOGOUT</button>
-						<div class="upload-section">
-							<input class="col-xs-12 file-upload-input" type="file" id="file-upload-input">	
-							<button class="js-upload col-xs-12">Upload File</button>
+						<div class="upload-section col-xs-12">
+							<div class="fileinput fileinput-new input-group" data-provides="fileinput">
+							  <span class="input-group-addon btn btn-default btn-file">
+							  	<span class="fileinput-new">Select File</span>
+							  	<span class="fileinput-exists">Change</span>
+							  	<input type="file" class="file-upload-input" id="file-upload-input" name="...">
+							  </span>
+							  <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+							  <div class="form-control" data-trigger="fileinput">
+							  	<i class="glyphicon glyphicon-file fileinput-exists"></i> 
+							  	<span class="fileinput-filename"></span>
+							  </div>
+							  <a class="input-group-addon btn btn-default fileinput-exists js-upload">Upload</a>								
+							</div>
 						</div>						
 					</div>					
 					<div class="file-list col-xs-12">
-					<h2>Client Files</h2>					
-						<!-- This is where the Files will go -->
+						<div id="file-list">
+						<input placeholder="Search by client name/date/filename" class="pull-right search">
+						<h2>Files:</h2>
+							<ul class="file-list-box list">						
+								<!-- This is where the Files will go -->
+							</ul>
+						</div>
 					</div>
 				</script>
 				<script type="text/template" id="file-view-template">
-					<div class="col-xs-12">
-						<div><%= this.model.get('clientName')%></div>	
-						<div><a href="<%= this.model.attributes.file._url %>"><%= this.model.get('fileName') %></a></div>
-						<div>Upload Date: <%=moment(this.model.createdAt).format("MMM/D/YYYY hh:mm A") %> </div>
-						<button>Delete</button>
-						<button>Download</button>					
+					<div class="col-xs-12 file-outer-box">
+						<div class="icon-box col-xs-2">
+							<a href="<%= this.model.attributes.file._url %>"><i class="typcn typcn-download file-icons"></i></a>
+							<i class="typcn typcn-trash file-icons"></i>
+						</div>
+						<div class="file-inner-box col-xs-10">
+							<span >Client: <strong class="name"><%= this.model.get('clientName')%></strong></span>	
+							<span class="date">Uploaded: <strong><%=moment(this.model.createdAt).format("MM/D/YY hh:mm A")%></strong></span>
+							<h3 class="fileName"><a href="<%= this.model.attributes.file._url %>"><%= this.model.get('fileName') %></a></h3>
+						</div>
 					</div>					
 				</script>				
-
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/underscore/underscore.js"></script>
         <script src="bower_components/backbone/backbone.js"></script>
         <script src="bower_components/moment/moment.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.js"></script>
+        <script src="bower_components/list.js/dist/list.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
         

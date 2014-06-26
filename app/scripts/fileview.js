@@ -1,16 +1,13 @@
 var FileView = Backbone.View.extend({
-
+  tagName: "li",
 
   renderedTemplate: _.template($('#file-view-template').text()),
 
-  events: {
-
-  },
+  events: {},
 
   initialize: function() {
-    $('.file-list ').append(this.el)
+    $('.file-list-box').append(this.el)
     this.render()
-    console.log(this.model)
   },
 
   render: function() {

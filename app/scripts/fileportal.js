@@ -19,6 +19,13 @@ var FilePortalView = Backbone.View.extend({
 
     query.find({
       success: function(files) {
+
+        _.defer(function() {
+          var options = {
+            valueNames: ['name', 'date', 'fileName']
+          };
+          var userList = new List('file-list', options);
+        });
         _.each(files, function(file) {
           new FileView({
             model: file

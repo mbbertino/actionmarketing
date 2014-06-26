@@ -2,6 +2,7 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 
 // bower:scss
 @import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
+@import "compass/css3/border-radius";
 // endbower
 
 $brandblue:rgb(169, 214, 241); // Primary
@@ -116,6 +117,14 @@ body {
 		color: #fff;
 		border: none;
 		padding: 10px 15px;
+		margin:5px 0;
+		font-size: 20px;
+
+		&:hover {
+			background: #fff;
+			color: $branddarkblue;
+			outline: 1px solid $branddarkblue;
+		}
 	}
 	
 	.file-upload-container {
@@ -124,24 +133,116 @@ body {
 		margin: 15px 0px 0px;
 		padding: 15px;
 		
-		h3 {
+		h2 {
 			text-transform: uppercase;
 			margin-top: 10px;
 			margin-bottom: 0px;
 		}
 
-		input {
-			margin-top: 15px;
-			border: 1px solid $branddarkblue;
-			padding: 10px 15px 10px 15px;
-			font-size: 16px;
-			line-height: 0px;
+		.upload-section {
+			padding: 15px 0px 0px;
 		}
+		.fileinput {
 
+			.form-control {
+				@include border-radius(0px);
+			}
+
+			.btn {
+				@include border-radius(0px);
+				border: 1px;
+
+			}
+			.js-upload{
+				background: $branddarkblue;
+				color: #fff;
+				&:hover {
+					background: #fff;
+					color: $branddarkblue;
+					outline: 1px solid $branddarkblue;
+				}	
+			}
+		}
 	}
+	
+	ul {
+		list-style: none;
+		padding: 0px;
+	}
+
 	.file-list {
 		background: #fff;
-	margin: 15px 0px;
+		margin: 15px 0px;
+
+		.search {			
+			width: 300px;
+			@include border-radius(20px);
+			height: 30px;
+			padding-left: 10px;
+
+			&:focus {
+				outline: none;
+			}
+		}
+
+		h2 {
+			padding-bottom: 15px;
+			color: $branddarkblue;
+			border-bottom: 1px solid $branddarkblue;
+		}
+
+		.file-list-box {			
+			height: 600px;
+			overflow-y:scroll;
+			li {
+				list-style: none;
+			}
+		}
+
+		.file-outer-box {
+			box-shadow: 0px 0px 20px $brandwhite;
+			border: 2px solid $brandwhite;
+			margin: 5px 0px;
+
+
+			.file-inner-box {
+				margin: 10px 0px 0px;
+				text-transform: uppercase;
+
+				h3 {
+					margin: 10px 0;
+
+					a {
+
+						&:hover {
+							color: $brandred;
+							text-decoration: none;
+						}
+					}
+				}
+				span {
+					margin: 0px 30px 0px 0px;					
+					display: inline-block;
+				}
+			}
+
+			.icon-box {
+				margin: 10px 0px;
+				padding: 5px 15px;
+				border-right: 1px solid $branddarkblue;
+
+				.file-icons {
+					color: $branddarkblue;
+					font-size: 32px;
+					margin: 0px 10px;
+
+					&:hover {
+						cursor:pointer;
+						color: $brandred;
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -163,7 +264,7 @@ body {
 			.btn {
 				text-transform: uppercase;
 				font-size: 14px;
-				border-radius: 0px;
+				@include border-radius(0px);		
 				border-color: #fff;
 				background: $branddarkblue;
 
@@ -231,7 +332,7 @@ body {
 
 /* Main marketing message and sign up button */
 .container .jumbotron {
-	border-radius: 0px;
+	@include border-radius(0px);
 	padding: 0px;
 }
 
@@ -263,11 +364,11 @@ body {
 		}
 
 		.carousel-caption {
-			top: 20px;
-			-webkit-text-stroke-width: 1px;
-		  -webkit-text-stroke-color: $branddarkblue;
+			padding: 0px 45px 0px 15px ;
+			top: 100px;
 
 			@media screen and (max-width: 400px) {
+				padding: 0px;
 				top: 0px;
 
 				h2 {
@@ -355,11 +456,11 @@ body {
 	}
 
 	.panel {
-		border-radius: 0px;
+		@include border-radius(0px);
 		border-color: $branddarkblue;
 
 		.panel-heading {
-			border-radius: 0px;
+			@include border-radius(0px);
 		}
 	}	
 
@@ -393,7 +494,7 @@ body {
 			margin-top: 15px;
 			text-transform: uppercase;
 			font-size: 14px;
-			border-radius: 0px;
+			@include border-radius(0px);
 			border-color: #fff;
 			background: $branddarkblue;
 
@@ -491,7 +592,7 @@ body {
 				height: 100%;
 				box-shadow: none;
 				margin-bottom: 0px;
-				border-radius: 0px;
+				@include border-radius(0px);
 
 				h3 {
 					border-bottom: 2px solid $brandblack;
