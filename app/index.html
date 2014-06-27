@@ -162,7 +162,7 @@
 				
 				<script type="text/template" id="services-template">
 					<div class="all-services col-xs-12">
-						<div class="col-md-3">
+						<div class="col-md-3 sidebar-box">
 							<div class="docs-sidebar affix-top">
 								<div class="panel-group" id="accordion">							
 								  <div class="panel panel-default">
@@ -382,7 +382,7 @@
 
 				<script type="text/template" id="fileportal-template">
 					<div class="col-xs-12 file-upload-container ">
-						<h2 class="pull-left">Welcome: <%= Parse.User.current().attributes.username %><small> Upload A File Below</small></h2>
+						<h2 class="pull-left"><%= Parse.User.current().attributes.username %><small> Upload A File Below</small></h2>
 						<button class="js-logout logout pull-right">LOGOUT</button>
 						<div class="upload-section col-xs-12">
 							<div class="fileinput fileinput-new input-group" data-provides="fileinput">
