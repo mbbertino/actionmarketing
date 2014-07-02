@@ -9,58 +9,81 @@
 
 module.exports = function(grunt) {
 
+  // Time how long tasks take. Can help when optimizing build times
+  require('time-grunt')(grunt);
+
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
-  // Time how long tasks take. Can help when optimizing build times
-  require('time-grunt')(grunt);
+  // Configurable paths
+  var config = {
+    app: 'app',
+    dist: 'dist'
+  };
 
   // Define the configuration for all the tasks
   grunt.initConfig({
 
     // Project settings
-    config: {
-      // Configurable paths
-      app: 'app',
-      dist: 'dist'
-    },
+    config: config,
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
         files: ['bower.json'],
-        tasks: ['bowerInstall']
+        tasks: ['wiredep']
       },
-      js: {
-        files: ['<%= config.app %>/scripts/{,*/}*.js'],
-        tasks: ['jshint'],
-        options: {
-          livereload: true
-        }
+      <%
+      if (coffee) { %>
+          coffee: {
+            files: ['<%%= config.app %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}'],
+            tasks: ['coffee:dist']
+        },
+        coffeeTest: {
+          files: ['test/spec/{,*/}*.{coffee,litcoffee,coffee.md}'],
+          tasks: ['coffee:test', 'test:watch']
+        },
+        <%
+      } else { %>
+          js: {
+            files: ['<%%= config.app %>/scripts/{,*/}*.js'],
+            tasks: ['jshint'],
+            options: {
+              livereload: true
+            }
+        },
+        jstest: {
+          files: ['test/spec/{,*/}*.js'],
+          tasks: ['test:watch']
+        },
+        <%
+      } %>
+        gruntfile: {
+          files: ['Gruntfile.js']
       },
-      jstest: {
-        files: ['test/spec/{,*/}*.js'],
-        tasks: ['test:watch']
-      },
-      gruntfile: {
-        files: ['Gruntfile.js']
-      },
-      compass: {
-        files: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass:server', 'autoprefixer']
-      },
-      styles: {
-        files: ['<%= config.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer']
+      <%
+      if (includeSass) { %>
+          sass: {
+            files: ['<%%= config.app %>/styles/{,*/}*.{scss,sass}'],
+            tasks: ['sass:server', 'autoprefixer']
+        },
+        <%
+      } %>
+        styles: {
+          files: ['<%%= config.app %>/styles/{,*/}*.css'],
+          tasks: ['newer:copy:styles', 'autoprefixer']
       },
       livereload: {
         options: {
-          livereload: '<%= connect.options.livereload %>'
+          livereload: '<%%= connect.options.livereload %>'
         },
         files: [
-          '<%= config.app %>/{,*/}*.html',
-          '.tmp/styles/{,*/}*.css',
-          '<%= config.app %>/images/{,*/}*'
+          '<%%= config.app %>/{,*/}*.html',
+          '.tmp/styles/{,*/}*.css', <%
+          if (coffee) { %>
+              '.tmp/scripts/{,*/}*.js', <%
+          } %>
+          '<%%= config.app %>/images/{,*/}*'
         ]
       }
     },
@@ -69,33 +92,39 @@ module.exports = function(grunt) {
     connect: {
       options: {
         port: 9000,
+        open: true,
         livereload: 35729,
         // Change this to '0.0.0.0' to access the server from outside
         hostname: 'localhost'
       },
       livereload: {
         options: {
-          open: true,
-          base: [
-            '.tmp',
-            '<%= config.app %>'
-          ]
+          middleware: function(connect) {
+            return [
+              connect.static('.tmp'),
+              connect().use('/bower_components', connect.static('./bower_components')),
+              connect.static(config.app)
+            ];
+          }
         }
       },
       test: {
         options: {
+          open: false,
           port: 9001,
-          base: [
-            '.tmp',
-            'test',
-            '<%= config.app %>'
-          ]
+          middleware: function(connect) {
+            return [
+              connect.static('.tmp'),
+              connect.static('test'),
+              connect().use('/bower_components', connect.static('./bower_components')),
+              connect.static(config.app)
+            ];
+          }
         }
       },
       dist: {
         options: {
-          open: true,
-          base: '<%= config.dist %>',
+          base: '<%%= config.dist %>',
           livereload: false
         }
       }
@@ -108,8 +137,8 @@ module.exports = function(grunt) {
           dot: true,
           src: [
             '.tmp',
-            '<%= config.dist %>/*',
-            '!<%= config.dist %>/.git*'
+            '<%%= config.dist %>/*',
+            '!<%%= config.dist %>/.git*'
           ]
         }]
       },
@@ -124,54 +153,100 @@ module.exports = function(grunt) {
       },
       all: [
         'Gruntfile.js',
-        '<%= config.app %>/scripts/{,*/}*.js',
-        '!<%= config.app %>/scripts/vendor/*',
+        '<%%= config.app %>/scripts/{,*/}*.js',
+        '!<%%= config.app %>/scripts/vendor/*',
         'test/spec/{,*/}*.js'
       ]
     },
+    <%
+    if (testFramework === 'mocha') { %>
 
-    // Mocha testing framework configuration options
-    mocha: {
-      all: {
-        options: {
-          run: true,
-          urls: ['http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/index.html']
-        }
-      }
-    },
-
-    // Compiles Sass to CSS and generates necessary files if requested
-    compass: {
-      options: {
-        sassDir: '<%= config.app %>/styles',
-        cssDir: '.tmp/styles',
-        generatedImagesDir: '.tmp/images/generated',
-        imagesDir: '<%= config.app %>/images',
-        javascriptsDir: '<%= config.app %>/scripts',
-        fontsDir: '<%= config.app %>/styles/fonts',
-        importPath: '<%= config.app %>/bower_components',
-        httpImagesPath: '/images',
-        httpGeneratedImagesPath: '/images/generated',
-        httpFontsPath: '/styles/fonts',
-        relativeAssets: false,
-        assetCacheBuster: false
-      },
-      dist: {
-        options: {
-          generatedImagesDir: '<%= config.dist %>/images/generated'
+      // Mocha testing framework configuration options
+      mocha: {
+        all: {
+          options: {
+            run: true,
+            urls: ['http://<%%= connect.test.options.hostname %>:<%%= connect.test.options.port %>/index.html']
+          }
         }
       },
-      server: {
-        options: {
-          debugInfo: true
+      <%
+    } else if (testFramework === 'jasmine') { %>
+
+      // Jasmine testing framework configuration options
+      jasmine: {
+        all: {
+          options: {
+            specs: 'test/spec/{,*/}*.js'
+          }
         }
-      }
-    },
+      },
+      <%
+    } %> <%
+    if (coffee) { %>
+
+      // Compiles CoffeeScript to JavaScript
+      coffee: {
+        dist: {
+          files: [{
+            expand: true,
+            cwd: '<%%= config.app %>/scripts',
+            src: '{,*/}*.{coffee,litcoffee,coffee.md}',
+            dest: '.tmp/scripts',
+            ext: '.js'
+          }]
+        },
+        test: {
+          files: [{
+            expand: true,
+            cwd: 'test/spec',
+            src: '{,*/}*.{coffee,litcoffee,coffee.md}',
+            dest: '.tmp/spec',
+            ext: '.js'
+          }]
+        }
+      },
+      <%
+    } %> <%
+    if (includeSass) { %>
+
+      // Compiles Sass to CSS and generates necessary files if requested
+      sass: {
+        options: { <%
+          if (includeLibSass) { %>
+              sourceMap: true,
+            includePaths: ['bower_components'] <%
+          } else { %>
+              sourcemap: true,
+            loadPath: 'bower_components' <%
+          } %>
+        },
+        dist: {
+          files: [{
+            expand: true,
+            cwd: '<%%= config.app %>/styles',
+            src: ['*.{scss,sass}'],
+            dest: '.tmp/styles',
+            ext: '.css'
+          }]
+        },
+        server: {
+          files: [{
+            expand: true,
+            cwd: '<%%= config.app %>/styles',
+            src: ['*.{scss,sass}'],
+            dest: '.tmp/styles',
+            ext: '.css'
+          }]
+        }
+      },
+      <%
+    } %>
 
     // Add vendor prefixed styles
     autoprefixer: {
       options: {
-        browsers: ['last 1 version']
+        browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1']
       },
       dist: {
         files: [{
@@ -184,16 +259,24 @@ module.exports = function(grunt) {
     },
 
     // Automatically inject Bower components into the HTML file
-    bowerInstall: {
+    wiredep: {
       app: {
-        src: ['<%= config.app %>/index.html'],
-        ignorePath: '<%= config.app %>/',
-        exclude: ['<%= config.app %>/bower_components/bootstrap-sass/vendor/assets/javascripts/bootstrap.js']
-      },
-      sass: {
-        src: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
-        ignorePath: '<%= config.app %>/bower_components/'
-      }
+        ignorePath: /^<%= config.app %>\/|\.\.\//,
+        src: ['<%%= config.app %>/index.html'] <%
+        if (includeBootstrap) { %> , <%
+          if (includeSass) { %>
+              exclude: ['bower_components/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js'] <%
+          } else { %>
+              exclude: ['bower_components/bootstrap/dist/js/bootstrap.js'] <%
+          }
+        } %>
+      } <%
+      if (includeSass) { %> ,
+        sass: {
+          src: ['<%%= config.app %>/styles/{,*/}*.{scss,sass}'],
+          ignorePath: /(\.\.\/){1,2}bower_components\//
+        } <%
+      } %>
     },
 
     // Renames files for browser caching purposes
@@ -201,11 +284,11 @@ module.exports = function(grunt) {
       dist: {
         files: {
           src: [
-            '<%= config.dist %>/scripts/{,*/}*.js',
-            '<%= config.dist %>/styles/{,*/}*.css',
-            '<%= config.dist %>/images/{,*/}*.*',
-            '<%= config.dist %>/styles/fonts/{,*/}*.*',
-            '<%= config.dist %>/*.{ico,png}'
+            '<%%= config.dist %>/scripts/{,*/}*.js',
+            '<%%= config.dist %>/styles/{,*/}*.css',
+            '<%%= config.dist %>/images/{,*/}*.*',
+            '<%%= config.dist %>/styles/fonts/{,*/}*.*',
+            '<%%= config.dist %>/*.{ico,png}'
           ]
         }
       }
@@ -216,18 +299,18 @@ module.exports = function(grunt) {
     // additional tasks can operate on them
     useminPrepare: {
       options: {
-        dest: '<%= config.dist %>'
+        dest: '<%%= config.dist %>'
       },
-      html: '<%= config.app %>/index.html'
+      html: '<%%= config.app %>/index.html'
     },
 
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
       options: {
-        assetsDirs: ['<%= config.dist %>', '<%= config.dist %>/images']
+        assetsDirs: ['<%%= config.dist %>', '<%%= config.dist %>/images']
       },
-      html: ['<%= config.dist %>/{,*/}*.html'],
-      css: ['<%= config.dist %>/styles/{,*/}*.css']
+      html: ['<%%= config.dist %>/{,*/}*.html'],
+      css: ['<%%= config.dist %>/styles/{,*/}*.css']
     },
 
     // The following *-min tasks produce minified files in the dist folder
@@ -235,9 +318,9 @@ module.exports = function(grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= config.app %>/images',
+          cwd: '<%%= config.app %>/images',
           src: '{,*/}*.{gif,jpeg,jpg,png}',
-          dest: '<%= config.dist %>/images'
+          dest: '<%%= config.dist %>/images'
         }]
       }
     },
@@ -246,9 +329,9 @@ module.exports = function(grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= config.app %>/images',
+          cwd: '<%%= config.app %>/images',
           src: '{,*/}*.svg',
-          dest: '<%= config.dist %>/images'
+          dest: '<%%= config.dist %>/images'
         }]
       }
     },
@@ -267,91 +350,127 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= config.dist %>',
+          cwd: '<%%= config.dist %>',
           src: '{,*/}*.html',
-          dest: '<%= config.dist %>'
+          dest: '<%%= config.dist %>'
         }]
       }
     },
 
-    // By default, your `index.html`'s <!-- Usemin block --> will take care of
-    // minification. These next options are pre-configured if you do not wish
-    // to use the Usemin blocks.
+    // By default, your `index.html`'s <!-- Usemin block --> will take care
+    // of minification. These next options are pre-configured if you do not
+    // wish to use the Usemin blocks.
     // cssmin: {
-    //     dist: {
-    //         files: {
-    //             '<%= config.dist %>/styles/main.css': [
-    //                 '.tmp/styles/{,*/}*.css',
-    //                 '<%= config.app %>/styles/{,*/}*.css'
-    //             ]
-    //         }
+    //   dist: {
+    //     files: {
+    //       '<%%= config.dist %>/styles/main.css': [
+    //         '.tmp/styles/{,*/}*.css',
+    //         '<%%= config.app %>/styles/{,*/}*.css'
+    //       ]
     //     }
+    //   }
     // },
     // uglify: {
-    //     dist: {
-    //         files: {
-    //             '<%= config.dist %>/scripts/scripts.js': [
-    //                 '<%= config.dist %>/scripts/scripts.js'
-    //             ]
-    //         }
+    //   dist: {
+    //     files: {
+    //       '<%%= config.dist %>/scripts/scripts.js': [
+    //         '<%%= config.dist %>/scripts/scripts.js'
+    //       ]
     //     }
+    //   }
     // },
     // concat: {
-    //     dist: {}
+    //   dist: {}
     // },
 
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
         files: [{
-          expand: true,
-          dot: true,
-          cwd: '<%= config.app %>',
-          dest: '<%= config.dist %>',
-          src: [
-            '*.{ico,png,txt}',
-            '.htaccess',
-            'images/{,*/}*.webp',
-            '{,*/}*.html',
-            'styles/fonts/{,*/}*.*',
-            'bower_components/bootstrap-sass-official/*.*'
-
-          ]
-        }]
+            expand: true,
+            dot: true,
+            cwd: '<%%= config.app %>',
+            dest: '<%%= config.dist %>',
+            src: [
+              '*.{ico,png,txt}',
+              '.htaccess',
+              'images/{,*/}*.webp',
+              '{,*/}*.html',
+              'styles/fonts/{,*/}*.*'
+            ]
+          } <%
+          if (includeBootstrap) { %> , {
+              expand: true,
+              dot: true,
+              cwd: '<% if (includeSass) {
+              %>.<%
+            } else {
+              %>bower_components/bootstrap/dist<%
+            } %>',
+              src: '<% if (includeSass) {
+              %>bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/*<%
+            } else {
+              %>fonts/*<%
+            } %>',
+              dest: '<%%= config.dist %>'
+            } <%
+          } %>
+        ]
       },
       styles: {
         expand: true,
         dot: true,
-        cwd: '<%= config.app %>/styles',
+        cwd: '<%%= config.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
       }
     },
+    <%
+    if (includeModernizr) { %>
 
-    // Generates a custom Modernizr build that includes only the tests you
-    // reference in your app
-    modernizr: {
-      devFile: '<%= config.app %>/bower_components/modernizr/modernizr.js',
-      outputFile: '<%= config.dist %>/scripts/vendor/modernizr.js',
-      files: [
-        '<%= config.dist %>/scripts/{,*/}*.js',
-        '<%= config.dist %>/styles/{,*/}*.css',
-        '!<%= config.dist %>/scripts/vendor/*'
-      ],
-      uglify: true
-    },
+      // Generates a custom Modernizr build that includes only the tests you
+      // reference in your app
+      modernizr: {
+        dist: {
+          devFile: 'bower_components/modernizr/modernizr.js',
+          outputFile: '<%%= config.dist %>/scripts/vendor/modernizr.js',
+          files: {
+            src: [
+              '<%%= config.dist %>/scripts/{,*/}*.js',
+              '<%%= config.dist %>/styles/{,*/}*.css',
+              '!<%%= config.dist %>/scripts/vendor/*'
+            ]
+          },
+          uglify: true
+        }
+      },
+      <%
+    } %>
 
     // Run some tasks in parallel to speed up build process
     concurrent: {
-      server: [
-        'compass:server',
+      server: [ <%
+        if (includeSass) { %>
+            'sass:server', <%
+        }
+        if (coffee) { %>
+            'coffee:dist', <%
+        } %>
         'copy:styles'
       ],
-      test: [
+      test: [ <%
+        if (coffee) { %>
+            'coffee', <%
+        } %>
         'copy:styles'
       ],
-      dist: [
-        'compass',
+      dist: [ <%
+        if (coffee) { %>
+            'coffee', <%
+        }
+        if (includeSass) { %>
+            'sass', <%
+        } %>
         'copy:styles',
         'imagemin',
         'svgmin'
@@ -360,13 +479,17 @@ module.exports = function(grunt) {
   });
 
 
-  grunt.registerTask('serve', function(target) {
+  grunt.registerTask('serve', 'start the server and preview your app, --allow-remote for remote access', function(target) {
+    if (grunt.option('allow-remote')) {
+      grunt.config.set('connect.options.hostname', '0.0.0.0');
+    }
     if (target === 'dist') {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
     }
 
     grunt.task.run([
       'clean:server',
+      'wiredep',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',
@@ -389,21 +512,28 @@ module.exports = function(grunt) {
     }
 
     grunt.task.run([
-      'connect:test',
-      'mocha'
+      'connect:test', <%
+      if (testFramework === 'mocha') { %>
+          'mocha' <%
+      } else if (testFramework === 'jasmine') { %>
+          'jasmine' <%
+      } %>
     ]);
   });
 
   grunt.registerTask('build', [
     'clean:dist',
+    'wiredep',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
     'concat',
     'cssmin',
     'uglify',
-    'copy:dist',
-    'modernizr',
+    'copy:dist', <%
+    if (includeModernizr) { %>
+        'modernizr', <%
+    } %>
     'rev',
     'usemin',
     'htmlmin'

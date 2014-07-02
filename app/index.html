@@ -13,7 +13,6 @@
         <!-- build:css styles/vendor.css -->
         <!-- bower:css -->
         <link rel="stylesheet" href="bower_components/typicons/src/font/typicons.min.css" />
-        <link rel='stylesheet' href='path/to/typicons.min.css' />
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.css" />
         <!-- endbower -->
@@ -25,7 +24,6 @@
         <script src="bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
         <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
-
         <script src="//www.parsecdn.com/js/parse-1.2.18.min.js"></script>
     </head>
     <body>
@@ -380,6 +378,7 @@
 						</div>
 					</div>					
 				</script>
+						<!-- <h2 class="js-create">Files:</h2> -->
 
 				<script type="text/template" id="fileportal-template">
 					<div class="col-xs-12 file-upload-container ">
@@ -404,7 +403,7 @@
 					<div class="file-list col-xs-12">
 						<div id="file-list">
 						<input placeholder="Search by client/date/filename" class="pull-right search">
-						<h2>Files:</h2>
+						<h2 class="js-edit">Files:</h2>
 							<ul class="file-list-box list">						
 								<!-- This is where the Files will go -->
 							</ul>
@@ -423,7 +422,8 @@
 							<span class="date">Uploaded: <strong><%=moment(this.model.createdAt).format("MM/D/YY hh:mm A")%></strong></span>
 						</div>
 					</div>					
-				</script>				
+				</script>	
+
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -432,6 +432,7 @@
         <script src="bower_components/moment/moment.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <script src="bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.js"></script>
+        <script src="bower_components/list.js/dist/list.js"></script>
         <script src="bower_components/list.js/dist/list.js"></script>
         <!-- endbower -->
         <!-- endbuild -->

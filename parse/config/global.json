@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "Action Marketing Client Portal": {
+            "applicationId": "0NPDH9dF1j1bzL7Np4qyhwrEklrhRufzbFtSzcQ5", 
+            "masterKey": "vQlb4BkFx7Vgw9NcDdl1JiWCBSPMcKFWnjylKkjO"
+        }, 
+        "_default": {
+            "link": "Action Marketing Client Portal"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.18"
+    }
+}

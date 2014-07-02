@@ -4,23 +4,4 @@ $(document).ready(function() {
   window.router = new MainRouter();
   Backbone.history.start();
 
-  // var roleACL = new Parse.ACL();
-  // roleACL.setRoleWriteAccess('Admin', true);
-  // roleACL.setRoleReadAccess('Admin', true);
-  // roleACL.setPublicReadAccess(true);
-  // var role = new Parse.Role("Admin", roleACL);
-  // role.getUsers().add(Parse.User.current());
-
-  // role.save(null, {
-  //   success: function(saveObject) {
-  //     alert("Woot, I figured it out!!!")
-  //   },
-  //   error: function(saveObject, error) {
-  //     alert("Failed creating role with error: " + error.code + ":" + error.message);
-  //   }
-  // });
-
-
-
-
 });
