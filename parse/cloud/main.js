@@ -27,27 +27,21 @@ Parse.Cloud.define("editUser", function(request, response) {
     response.error("Must be signed in to call this Cloud Function.")
     return;
   }
-
   Parse.Cloud.useMasterKey();
-  // Edit other User
-  // Send an email on creation of User to new user
 
   var userQuery = new Parse.Query(Parse.User);
-  userQuery.get(request.params.userID, {
+  userQuery.get(request.params.editUserID, {
     success: function(anotherUser) {
       anotherUser.set("username", request.params.username);
       anotherUser.set("password", request.params.password);
       anotherUser.set("email", request.params.email);
 
-      // Save the user.
       anotherUser.save(null, {
         success: function(anotherUser) {
-          // The user was saved successfully.
           response.success("Successfully updated user.");
+          // Send an email on creation of User to new user
         },
         error: function(gameScore, error) {
-          // The save failed.
-          // error is a Parse.Error with an error code and description.
           response.error("Could not save changes to user.");
         }
       });
@@ -56,11 +50,44 @@ Parse.Cloud.define("editUser", function(request, response) {
       response.error("Could not find user.");
     }
   })
-
 });
 
 Parse.Cloud.define("deleteUser", function(request, response) {
-  // Delete other User
+
+  if (!request.user) {
+    response.error("Must be signed in to call this Cloud Function.")
+    return;
+  }
+
+  if (request.user.id !== "O8DvzHJhpG") {
+    response.error("You must be ActionMarketing to access this functionality.")
+    return;
+  }
+
+  if (request.params.badUserID === "O8DvzHJhpG") {
+    response.error("can not delete user with the id of: " + request.params.badUserID)
+  }
+
+  Parse.Cloud.useMasterKey();
+
+  var userQuery = new Parse.Query(Parse.User);
+  userQuery.get(request.params.badUserID, {
+    success: function(anotherUser) {
+      anotherUser.destroy(null, {
+        success: function(anotherUser) {
+          response.success("Successfully deleted a user.");
+          // Send an email on creation of User to new user
+        },
+        error: function(gameScore, error) {
+          response.error("Could not delete user.");
+        }
+      });
+      response.success("Successfully deleted a user.");
+    },
+    error: function(error) {
+      response.error("Could not find user.");
+    }
+  })
 
 });
 
