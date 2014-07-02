@@ -1,8 +1,5 @@
 var _ = require('underscore')
 
-// Dad needs
-// Some sort of admin panel to read all user objects
-
 Parse.Cloud.define("createNewUser", function(request, response) {
   var newUser = new Parse.User();
 
@@ -28,7 +25,6 @@ Parse.Cloud.define("editUser", function(request, response) {
     return;
   }
   Parse.Cloud.useMasterKey();
-
   var userQuery = new Parse.Query(Parse.User);
   userQuery.get(request.params.editUserID, {
     success: function(anotherUser) {
@@ -39,7 +35,7 @@ Parse.Cloud.define("editUser", function(request, response) {
       anotherUser.save(null, {
         success: function(anotherUser) {
           response.success("Successfully updated user.");
-          // Send an email on creation of User to new user
+          // Send an email on edit of User to user
         },
         error: function(gameScore, error) {
           response.error("Could not save changes to user.");
@@ -53,30 +49,24 @@ Parse.Cloud.define("editUser", function(request, response) {
 });
 
 Parse.Cloud.define("deleteUser", function(request, response) {
-
   if (!request.user) {
     response.error("Must be signed in to call this Cloud Function.")
     return;
   }
-
   if (request.user.id !== "O8DvzHJhpG") {
     response.error("You must be ActionMarketing to access this functionality.")
     return;
   }
-
   if (request.params.badUserID === "O8DvzHJhpG") {
     response.error("can not delete user with the id of: " + request.params.badUserID)
   }
-
   Parse.Cloud.useMasterKey();
-
   var userQuery = new Parse.Query(Parse.User);
   userQuery.get(request.params.badUserID, {
     success: function(anotherUser) {
       anotherUser.destroy(null, {
         success: function(anotherUser) {
           response.success("Successfully deleted a user.");
-          // Send an email on creation of User to new user
         },
         error: function(gameScore, error) {
           response.error("Could not delete user.");
@@ -93,10 +83,8 @@ Parse.Cloud.define("deleteUser", function(request, response) {
 
 Parse.Cloud.define("fileJustUploaded", function(request, response) {
   // Send an email to Admin and User when a file is uploaded
-
 });
 
 Parse.Cloud.define("fileDownloaded", function(request, response) {
   // Send an email to Admin when a file is downloaded with a log of the user who downloaded the file
-
 });
