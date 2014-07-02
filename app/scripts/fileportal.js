@@ -7,9 +7,8 @@ var FilePortalView = Backbone.View.extend({
   events: {
     "click .js-upload": "save",
     "click .js-logout": "logout",
-    "click .js-create": "createUser",
-    "click .js-edit": "editUser",
-    "click .js-delete": "deleteUser"
+    "click .js-create-view": "createUser",
+    "click .js-edit-delete": "editDeleteUser"
   },
 
   initialize: function() {
@@ -39,59 +38,12 @@ var FilePortalView = Backbone.View.extend({
     })
   },
 
-  deleteUser: function() {
-    var badUserID = 'mkU5LzaOvg';
-
-    Parse.Cloud.run('deleteUser', {
-      badUserID: badUserID
-    }, {
-      success: function(result) {
-        console.log('woot!')
-      },
-      error: function(error) {
-        console.log(error)
-      }
-    });
-  },
-
-  editUser: function() {
-    var userID = 'mkU5LzaOvg';
-    var username = "matt";
-    var password = "mary";
-    var email = "mary@gmail.com";
-
-    Parse.Cloud.run('editUser', {
-      editUserID: userID,
-      username: username,
-      password: password,
-      email: email
-    }, {
-      success: function(result) {
-        console.log('woot')
-      },
-      error: function(error) {
-        console.log(error)
-      }
-    });
+  editDeleteUser: function() {
+    new EditDeleteUserView()
   },
 
   createUser: function() {
-    var username = "mary";
-    var password = "mary";
-    var email = "mary@gmail.com";
-
-    Parse.Cloud.run('createNewUser', {
-      username: username,
-      password: password,
-      email: email
-    }, {
-      success: function(result) {
-        console.log("woot")
-      },
-      error: function(error) {
-        console.log(error)
-      }
-    });
+    new CreateUserView()
   },
 
   logout: function() {

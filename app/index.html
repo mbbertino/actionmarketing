@@ -371,37 +371,77 @@
 								<h3>CLIENT LOGIN</h3>
 							</div>
 							<div class="col-xs-12 login-body">
-								<input class="username col-xs-12" placeholder="USERNAME"></input>
-								<input class="password col-xs-12" type='password' placeholder="PASSWORD"></input>
+								<input class="username col-xs-12 js-username" placeholder="USERNAME"></input>
+								<input class="password col-xs-12 js-password" type='password' placeholder="PASSWORD"></input>
 								<div class="col-xs-12 login js-login">LOGIN</div>
 							</div>
 						</div>
 					</div>					
+				</script>						
+
+				<script type="text/template" id="create-user-template">
+					<input class="username col-xs-12 js-username" placeholder="USERNAME"></input>
+					<input class="password col-xs-12 js-password" type='password' placeholder="PASSWORD"></input>
+					<input class="email col-xs-12 js-email" placeholder="email"></input>
+					<div class="col-xs-6">
+						<button class="col-xs-12 js-create">Create User</button>
+					</div>
 				</script>
-						<!-- <h2 class="js-create">Files:</h2> -->
-						<!-- <h2 class="js-edit">Files:</h2> -->
-						<!-- <h2 class="js-delete">Files:</h2> -->
+
+				<script type="text/template" id="edit-delete-user-template">
+					<select class="js-user-list">
+						<option disabled selected>Select User</option>
+					</select>
+					<input class="username col-xs-12 js-username" placeholder="USERNAME"></input>
+					<input class="password col-xs-12 js-password" type='password' placeholder="PASSWORD"></input>
+					<input class="email col-xs-12 js-email" placeholder="email"></input>
+					<input class="email col-xs-12 js-id hidden" disabled></input>
+					<div class="col-xs-6">
+						<button class="col-xs-12 js-edit">Save Changes</button>
+					</div>
+					<div class="col-xs-6">
+						<button class="col-xs-12 js-delete">Delete User</button>
+					</div>
+				</script>
+
+				<script type="text/template" id="user-list-template"><%= this.model.attributes.username %></script>
+
 
 				<script type="text/template" id="fileportal-template">
-					<div class="col-xs-12 file-upload-container ">
-						<h2 class="pull-left"><%= Parse.User.current().attributes.username %><small> Upload A File Below</small></h2>
-						<button class="js-logout logout pull-right">LOGOUT</button>
-						<div class="upload-section col-xs-12">
-							<div class="fileinput fileinput-new input-group" data-provides="fileinput">
-							  <span class="input-group-addon btn btn-default btn-file">
-							  	<span class="fileinput-new">Select File</span>
-							  	<span class="fileinput-exists">Change</span>
-							  	<input type="file" class="file-upload-input" id="file-upload-input" name="...">
-							  </span>
-							  <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
-							  <div class="form-control" data-trigger="fileinput">
-							  	<i class="glyphicon glyphicon-file fileinput-exists"></i> 
-							  	<span class="fileinput-filename"></span>
-							  </div>
-							  <a class="input-group-addon btn btn-default fileinput-exists js-upload">Upload</a>								
-							</div>
-						</div>						
-					</div>					
+					<% if (Parse.User.current().id === "O8DvzHJhpG") { %>
+						<div class="col-xs-12 file-upload-container ">
+							<h2 class="pull-left"><%= Parse.User.current().attributes.username %><small> Manage Users Below</small></h2>
+							<button class="js-logout logout pull-right">LOGOUT</button>
+							<div class="upload-section col-xs-12">
+								<div class="col-xs-6">
+									<button class="col-xs-12 js-create-view">Create User</button>
+								</div>
+								<div class="col-xs-6">
+									<button class="col-xs-12 js-edit-delete">Edit/Delete User</button>
+								</div>
+							</div>						
+						</div>
+					<% } else { %>
+						<div class="col-xs-12 file-upload-container ">
+							<h2 class="pull-left"><%= Parse.User.current().attributes.username %><small> Upload A File Below</small></h2>
+							<button class="js-logout logout pull-right">LOGOUT</button>
+							<div class="upload-section col-xs-12">
+								<div class="fileinput fileinput-new input-group" data-provides="fileinput">
+								  <span class="input-group-addon btn btn-default btn-file">
+								  	<span class="fileinput-new">Select File</span>
+								  	<span class="fileinput-exists">Change</span>
+								  	<input type="file" class="file-upload-input" id="file-upload-input" name="...">
+								  </span>
+								  <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+								  <div class="form-control" data-trigger="fileinput">
+								  	<i class="glyphicon glyphicon-file fileinput-exists"></i> 
+								  	<span class="fileinput-filename"></span>
+								  </div>
+								  <a class="input-group-addon btn btn-default fileinput-exists js-upload">Upload</a>								
+								</div>
+							</div>						
+						</div>					
+					<% } %>
 					<div class="file-list col-xs-12">
 						<div id="file-list">
 						<input placeholder="Search by client/date/filename" class="pull-right search">
@@ -412,6 +452,7 @@
 						</div>
 					</div>
 				</script>
+
 				<script type="text/template" id="file-view-template">
 					<div class="col-xs-12 file-outer-box">
 						<div class="icon-box col-xs-1">
@@ -434,7 +475,6 @@
         <script src="bower_components/moment/moment.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <script src="bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.js"></script>
-        <script src="bower_components/list.js/dist/list.js"></script>
         <script src="bower_components/list.js/dist/list.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
@@ -475,6 +515,9 @@
         <script src="scripts/login.js"></script>
         <script src="scripts/fileportal.js"></script>
         <script src="scripts/fileview.js"></script>
+        <script src="scripts/createuser.js"></script>
+        <script src="scripts/editdeleteuser.js"></script>
+        <script src="scripts/userlist.js"></script>
         <!-- endbuild -->
 </body>
 </html>
