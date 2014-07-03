@@ -28,7 +28,6 @@ var EditDeleteUserView = Backbone.View.extend({
   },
 
   updateInputValues: function() {
-    console.log(this.$('.js-user-list option:selected'))
     var that = this
     var userQuery = new Parse.Query(Parse.User);
     userQuery.get(this.$('.js-user-list option:selected')[0].id, {
