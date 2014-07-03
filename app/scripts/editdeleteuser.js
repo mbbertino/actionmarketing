@@ -34,7 +34,8 @@ var EditDeleteUserView = Backbone.View.extend({
       success: function(user) {
         console.log(user)
         this.$('.js-username').val(user.attributes.username)
-        this.$('.js-password').val("the user must change their own password")
+        this.$('.js-password').val("Typing here will reset this password")
+        // I need to make an if statment in the edit user function to stop this from overriding
         this.$('.js-email').val(user.attributes.email)
         this.$('.js-id').val(user.id)
       },

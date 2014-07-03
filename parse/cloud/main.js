@@ -1,4 +1,41 @@
-var _ = require('underscore')
+
+Parse.Cloud.define("sendMandrillTemplate", function(request, response) {
+  var Mandrill = require('cloud/mandrillTemplateSend.js');
+  Mandrill.initialize('M2-IBclvNFiIWRFknimXWw');
+
+  Mandrill.sendTemplate(
+    {
+		  "template_name": "welcome",
+		  "template_content": [
+		    {
+		      "name": "example name",
+		      "content": "example content"
+		    }
+		  ],
+		  "message": {
+		    "to": [
+		      {  
+		      	"email": "mattbertino@gmail.com",
+		        "name": "matt"
+		      }
+		    ],
+		    "from_email": "mattbertino@gmail.com",
+		    "from_name": "Matt Bertino",
+		    "subject": "FileUploaded",
+		    "inline_css": true
+		  },
+		  "async": false
+		},
+    {
+      success: function (httpResponse) {
+          response.success("Email sent!");
+      },
+      error: function (httpResponse) {
+          response.error("Uh oh, something went wrong");
+      }
+    }
+  );    
+});
 
 Parse.Cloud.define("createNewUser", function(request, response) {
   var newUser = new Parse.User();
@@ -16,7 +53,6 @@ Parse.Cloud.define("createNewUser", function(request, response) {
       response.error(alert("Error: " + error.code + " " + error.message))
     }
   });
-
 });
 
 Parse.Cloud.define("editUser", function(request, response) {
@@ -78,13 +114,35 @@ Parse.Cloud.define("deleteUser", function(request, response) {
       response.error("Could not find user.");
     }
   })
-
 });
 
-Parse.Cloud.define("fileJustUploaded", function(request, response) {
-  // Send an email to Admin and User when a file is uploaded
-});
-
-Parse.Cloud.define("fileDownloaded", function(request, response) {
-  // Send an email to Admin when a file is downloaded with a log of the user who downloaded the file
-});
+// This works to send a simple email but I want to learn to get templates working
+// Parse.Cloud.define("sendEmailPrac", function(request, response) {
+// 	var Mandrill = require('mandrill');
+// 	Mandrill.initialize('M2-IBclvNFiIWRFknimXWw');
+// 	Mandrill.sendEmail({
+// 	  message: {
+// 	    text: "Hello World!",
+// 	    subject: "Using Cloud Code and Mandrill is great!",
+// 	    from_email: "parse@cloudcode.com",
+// 	    from_name: "Cloud Code",
+// 	    to: [
+// 	      {
+// 	        email: "mattbertino@gmail.com",
+// 	        name: "Your Name"
+// 	      }
+// 	    ]
+// 	  },
+// 	  async: true
+// 	},{
+// 	  success: function(httpResponse) {
+// 	    console.log(httpResponse);
+// 	    response.success("Email sent!");
+// 	  },
+// 	  error: function(httpResponse) {
+// 	    console.error(httpResponse);
+// 	    response.error("Uh oh, something went wrong");
+// 	  }
+// 	});
+// 	// to call this I just run Parse.Cloud.run('sendEmailPrac') from terminal or any other js file
+// });
