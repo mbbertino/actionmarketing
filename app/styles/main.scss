@@ -424,7 +424,21 @@ body {
 			margin: 15px 0px;
 		}
 
-		.login {
+		span {
+			padding: 0px;
+
+			a {
+				color: $branddarkblue;
+				&:hover {
+					cursor: pointer;
+					text-decoration: none;
+					color: $brandyellow;
+				}
+			}
+		}
+
+		button {
+			border: none;
 			text-align: center;
 			margin: 15px 0px;
 			padding: 10px;

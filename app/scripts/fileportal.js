@@ -67,7 +67,7 @@ var FilePortalView = Backbone.View.extend({
       newFile.set('file', parseFile);
       newFile.set('fileName', name);
       newFile.set('tStamp', now);
-      newFile.set('clientName', Parse.User.current().attributes.username);
+      newFile.set('clientName', Parse.User.current().attributes.clientname);
 
       var fileACL = new Parse.ACL(Parse.User.current())
       fileACL.setRoleReadAccess('Admin', true)
@@ -76,7 +76,21 @@ var FilePortalView = Backbone.View.extend({
       newFile.setACL(fileACL)
       newFile.save(null, {
         success: function(results) {
-          alert("File succesfully uploaded.")
+          Parse.Cloud.run('sendUploadTemplate', {
+            toClientName: Parse.User.current().attributes.clientname,
+            fileName: name,
+            toEmail: Parse.User.current().attributes.email,
+            dateuploaded: moment(now).format("MM/DD/YYYY hh:mm A")
+          }, {
+            success: function(result) {
+              new FilePortalView({
+                model: Parse.User.current()
+              })
+            },
+            error: function(error) {
+              console.log(error)
+            }
+          });
         }
       })
     }, function(error) {

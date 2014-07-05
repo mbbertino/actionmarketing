@@ -7,7 +7,8 @@ var EditDeleteUserView = Backbone.View.extend({
   events: {
     "click .js-delete": "deleteUser",
     "click .js-edit": "editUser",
-    "change .js-user-list": "updateInputValues"
+    "change .js-user-list": "updateInputValues",
+    "click .js-back": "back"
   },
 
   initialize: function() {
@@ -27,6 +28,10 @@ var EditDeleteUserView = Backbone.View.extend({
     })
   },
 
+  back: function() {
+    Backbone.history.history.back()
+  },
+
   updateInputValues: function() {
     var that = this
     var userQuery = new Parse.Query(Parse.User);
@@ -34,8 +39,7 @@ var EditDeleteUserView = Backbone.View.extend({
       success: function(user) {
         console.log(user)
         this.$('.js-username').val(user.attributes.username)
-        this.$('.js-password').val("Typing here will reset this password")
-        // I need to make an if statment in the edit user function to stop this from overriding
+        this.$('.js-clientname').val(user.attributes.clientname)
         this.$('.js-email').val(user.attributes.email)
         this.$('.js-id').val(user.id)
       },
@@ -69,13 +73,13 @@ var EditDeleteUserView = Backbone.View.extend({
     if (this.$('.js-id').val() !== "") {
       var userID = this.$('.js-id').val()
       var username = this.$('.js-username').val()
-      var password = this.$('.js-password').val()
+      var clientname = this.$('.js-clientname').val()
       var email = this.$('.js-email').val();
 
       Parse.Cloud.run('editUser', {
         editUserID: userID,
         username: username,
-        password: password,
+        clientname: clientname,
         email: email
       }, {
         success: function(result) {

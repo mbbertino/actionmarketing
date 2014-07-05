@@ -1,52 +1,119 @@
-
 Parse.Cloud.define("sendMandrillTemplate", function(request, response) {
   var Mandrill = require('cloud/mandrillTemplateSend.js');
   Mandrill.initialize('M2-IBclvNFiIWRFknimXWw');
 
-  Mandrill.sendTemplate(
-    {
-		  "template_name": "welcome",
-		  "template_content": [
-		    {
-		      "name": "example name",
-		      "content": "example content"
-		    }
-		  ],
-		  "message": {
-		    "to": [
-		      {  
-		      	"email": "mattbertino@gmail.com",
-		        "name": "matt"
-		      }
-		    ],
-		    "from_email": "mattbertino@gmail.com",
-		    "from_name": "Matt Bertino",
-		    "subject": "FileUploaded",
-		    "inline_css": true
-		  },
-		  "async": false
-		},
-    {
-      success: function (httpResponse) {
-          response.success("Email sent!");
-      },
-      error: function (httpResponse) {
-          response.error("Uh oh, something went wrong");
-      }
+  Mandrill.sendTemplate({
+    "template_name": request.params.templateName,
+    "template_content": [{
+      "name": "example name",
+      "content": "example content"
+    }],
+    "message": {
+      "to": [{
+        "email": request.params.toEmail,
+        "name": request.params.toClientName,
+      }],
+      "from_email": "ActionMarketing@gmail.com",
+      "from_name": "Action Marketing",
+      "subject": request.params.toSubject,
+      "inline_css": true,
+      "merge_vars": [{
+        "rcpt": request.params.toEmail,
+        "vars": [{
+          "name": "clientname",
+          "content": request.params.toClientName
+        }, {
+          "name": "username",
+          "content": request.params.toUserName
+        }, {
+          "name": "password",
+          "content": request.params.toPassword
+        }]
+      }],
+    },
+    "async": false
+  }, {
+    success: function(httpResponse) {
+      response.success("Email sent!");
+    },
+    error: function(httpResponse) {
+      response.error("Uh oh, something went wrong");
     }
-  );    
+  });
+});
+
+Parse.Cloud.define("sendUploadTemplate", function(request, response) {
+  var Mandrill = require('cloud/mandrillTemplateSend.js');
+  Mandrill.initialize('M2-IBclvNFiIWRFknimXWw');
+
+  Mandrill.sendTemplate({
+    "template_name": "fileupload",
+    "template_content": [{
+      "name": "example name",
+      "content": "example content"
+    }],
+    "message": {
+      "to": [{
+        "email": request.params.toEmail,
+        "name": request.params.toClientName,
+      }],
+      "from_email": "ActionMarketing@gmail.com",
+      "from_name": "Action Marketing",
+      "subject": "Successful File Upload",
+      "inline_css": true,
+      "merge_vars": [{
+        "rcpt": request.params.toEmail,
+        "vars": [{
+          "name": "clientname",
+          "content": request.params.toClientName
+        }, {
+          "name": "filename",
+          "content": request.params.fileName
+        }, {
+          "name": "dateuploaded",
+          "content": request.params.dateuploaded
+        }]
+      }],
+    },
+    "async": false
+  }, {
+    success: function(httpResponse) {
+      response.success("Email sent!");
+    },
+    error: function(httpResponse) {
+      response.error("Uh oh, something went wrong");
+    }
+  });
 });
 
 Parse.Cloud.define("createNewUser", function(request, response) {
   var newUser = new Parse.User();
 
   newUser.set("username", request.params.username);
+  newUser.set("clientname", request.params.clientname);
   newUser.set("password", request.params.password);
   newUser.set("email", request.params.email);
 
   newUser.signUp(null, {
     success: function(user) {
       response.success(console.log(user))
+      Parse.Cloud.run('sendMandrillTemplate', {
+        templateName: "welcome",
+        toSubject: "Welcome",
+        toUserName: request.params.username,
+        toClientName: request.params.clientname,
+        toPassword: request.params.password,
+        toEmail: request.params.email,
+      }, {
+        success: function(result) {
+          new FilePortalView({
+            model: Parse.User.current()
+          })
+        },
+        error: function(error) {
+          console.log(error)
+        }
+      });
       // Send an email on creation of User to new user
     },
     error: function(user, error) {
@@ -65,7 +132,7 @@ Parse.Cloud.define("editUser", function(request, response) {
   userQuery.get(request.params.editUserID, {
     success: function(anotherUser) {
       anotherUser.set("username", request.params.username);
-      anotherUser.set("password", request.params.password);
+      anotherUser.set("clientname", request.params.clientname);
       anotherUser.set("email", request.params.email);
 
       anotherUser.save(null, {
