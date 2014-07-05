@@ -6,7 +6,8 @@ var MainRouter = Backbone.Router.extend({
     "services/:id": "services",
     "client-login": "login",
     "client-login/:user": "fileUpload",
-    "contact": "contact"
+    "about": "contact",
+    "request-a-quote": "request"
   },
 
   initialize: function() {},
@@ -43,8 +44,12 @@ var MainRouter = Backbone.Router.extend({
     }
   },
 
-  contact: function() {
+  request: function() {
+    new AboutView()
+  },
 
+  contact: function() {
+    new AboutView()
   }
 
 })

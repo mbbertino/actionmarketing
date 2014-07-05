@@ -49,8 +49,8 @@
 			            <li class="link link-home"><a  href="#" role="button">Home</a></li>				            
 			            <li class="link link-services"><a  href="#services" role="button">Services</a></li>
 			            <li class="link link-client"><a  href="#client-login" role="button">Client Login</a></li>
-			            <li class="link link-about"><a  href="#" role="button">About</a></li>
-			            <li class="link link-quote action"><a  href="#quote" role="button">request a quote</a></li>
+			            <li class="link link-about"><a  href="#about" role="button">About</a></li>
+			            <li class="link link-quote action"><a  href="#request-a-quote" role="button">request a quote</a></li>
 			          </ul>				          
 			        </div><!-- /.nav-collapse -->
 			      </div>
@@ -383,13 +383,12 @@
 					</div>					
 				</script>						
 
-
 				<script type="text/template" id="create-user-template">
 					<div class="col-xs-12 user-mg-container">
-						<input class="username col-xs-12 js-username" placeholder="username"></input>
-						<input class="clientname col-xs-12 js-clientname" placeholder="clientname"></input>
-						<input class="password col-xs-12 js-password" type='password' placeholder="password"></input>
-						<input class="email col-xs-12 js-email" placeholder="email"></input>
+						<input class="username col-xs-12 js-username" placeholder="USERNAME"></input>
+						<input class="clientname col-xs-12 js-clientname" placeholder="CLIENTNAME"></input>
+						<input class="password col-xs-12 js-password" type='password' placeholder="PASSWORD"></input>
+						<input class="email col-xs-12 js-email" placeholder="EMAIL"></input>
 						<div class="col-xs-6">
 							<button class="col-xs-12 js-create">Create User</button>						
 						</div>
@@ -404,9 +403,9 @@
 						<select class="js-user-list col-xs-12">
 							<option disabled selected>Select User</option>
 						</select>
-						<input class="username col-xs-12 js-username" placeholder="username"></input>
-						<input class="clientname col-xs-12 js-clientname" placeholder="clientname"></input>
-						<input class="email col-xs-12 js-email" placeholder="email"></input>
+						<input class="username col-xs-12 js-username" placeholder="USERNAME"></input>
+						<input class="clientname col-xs-12 js-clientname" placeholder="CLIENTNAME"></input>
+						<input class="email col-xs-12 js-email" placeholder="EMAIL"></input>
 						<input class="id col-xs-12 js-id hidden" disabled></input>
 						<div class="col-xs-4">
 							<button class="col-xs-12 js-edit">Save Changes</button>
@@ -420,7 +419,7 @@
 					</div>
 				</script>
 
-				<script type="text/template" id="user-list-template"><%= this.model.attributes.username %></script>
+				<script type="text/template" id="user-list-template"><%= this.model.attributes.clientname %></script>
 
 				<script type="text/template" id="fileportal-template">
 					<% if (Parse.User.current().id === "O8DvzHJhpG") { %>
@@ -486,6 +485,10 @@
 					</div>					
 				</script>	
 
+				<script type="text/template" id="about-template">
+					<h1>hello</h1>
+				</script>
+
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -530,13 +533,14 @@
         <script src="scripts/router.js"></script>
         <script src="scripts/main.js"></script>
         <script src="scripts/appview.js"></script>
-        <script src="scripts/services.js"></script>
-        <script src="scripts/login.js"></script>
-        <script src="scripts/fileportal.js"></script>
-        <script src="scripts/fileview.js"></script>
-        <script src="scripts/createuser.js"></script>
-        <script src="scripts/editdeleteuser.js"></script>
-        <script src="scripts/userlist.js"></script>
+        <script src="scripts/views/services.js"></script>
+        <script src="scripts/views/login.js"></script>
+        <script src="scripts/views/fileportal.js"></script>
+        <script src="scripts/views/fileview.js"></script>
+        <script src="scripts/views/createuser.js"></script>
+        <script src="scripts/views/editdeleteuser.js"></script>
+        <script src="scripts/views/userlist.js"></script>
+        <script src="scripts/views/about.js"></script>
         <!-- endbuild -->
 </body>
 </html>
