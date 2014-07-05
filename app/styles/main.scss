@@ -127,7 +127,43 @@ body {
 			outline: 1px solid $branddarkblue;
 		}
 	}
-	
+
+	.user-mg-container {
+		margin: 15px 0px;
+		padding: 15px;
+		background: #fff;
+
+		input {
+			padding: 10px;
+			margin: 15px 0px;
+		}
+
+		select {
+			background: #fff;
+			border-radius: 0px;			
+		}
+
+		.back {
+			background: $brandred;
+			color: $brandwhite;
+			&:hover {
+				outline: 1px solid $brandred;
+				background: #fff;
+				color: $brandred;
+			}
+		}
+
+		.delete {
+			background: $brandyellow;
+			color: $brandwhite;
+			&:hover {
+				outline: 1px solid $brandyellow;
+				background: #fff;
+				color: $brandyellow;
+			}
+		}
+	}
+
 	.file-upload-container {
 		overflow: hidden;
 		background: #fff;
