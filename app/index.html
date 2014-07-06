@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="bower_components/typicons/src/font/typicons.min.css" />
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.css" />
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css(.tmp) styles/main.css -->
@@ -25,6 +26,7 @@
         <!-- endbuild -->
         <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
         <script src="//www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+        <script type="text/javascript"src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqsVItZepRG98HzjxFvn-3G-3MvUgUKkI"></script>
     </head>
     <body>
         <!--[if lt IE 10]>
@@ -71,7 +73,7 @@
           			<ul>
             			<li class="phone">561.543.7466</li>
             			<li class="email">info@actionmarketing.com</li>
-            			<li class="address">194 Jones Creek Drive Jupiter FL, 33458</li>
+            			<li class="address">1092 Jupiter Park Ln #130 Jupiter, FL 33458</li>
           			</ul>
           		</div>
           		<div class="col-sm-5 foot-copy">
@@ -484,11 +486,31 @@
 						</div>
 					</div>					
 				</script>	
-
 				<script type="text/template" id="about-template">
-					<h1>hello</h1>
-				</script>
+					<div class="overview col-xs-12"></div>
+					
+					<div class="quote col-xs-12">
+						<div class="col-xs-12">
+							<h3>Request A Quote</h3>
+						</div>
+						<div class="col-sm-6">
+							<input placeholder="FIRST NAME" class="col-xs-12">
+							<input placeholder="LAST NAME" class="col-xs-12">
+							<input placeholder="COMPANY NAME" class="col-xs-12">
+							<input placeholder="CONTACT EMAIL" class="col-xs-12">
+						</div>
+						<div class="col-sm-6">
+							<textarea placeholder="Please describe the that job we can help with." class="col-xs-12"></textarea>
+							<button class="btn js-request request col-xs-12">send request</button>
+						</div>
+					</div>
 
+					<div class="prev-clients col-xs-12"></div>					
+
+					<div class="map-contact col-xs-12">
+						<div class="mapcanvas" id="map-canvas"></div>
+					</div>
+				</script>
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>

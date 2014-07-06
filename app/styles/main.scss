@@ -2,6 +2,7 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 
 // bower:scss
 @import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
 @import "compass/css3/border-radius";
 // endbower
 
@@ -107,6 +108,8 @@ body {
     	}
     }
 }
+
+
 
 .upload-wrapper {
 	margin: 15px 0px;
@@ -692,6 +695,50 @@ body {
 	}
 }
 
+.about-page {
+
+	.map-contact {
+		padding: 0px;
+		height: 300px;
+		.mapcanvas {
+			height: 100%;
+		}
+	}
+	.quote {
+		background: $branddarkblue;
+		padding: 15px 15px;
+
+		input {
+			margin: 15px 0px;
+			padding: 10px;
+			border: none;
+		}
+		textarea {
+			border: none;
+			height: 177px;
+			padding: 10px;
+			margin: 15px 0px 30px;			
+		}
+		h3 {
+			margin: 15px 0px;
+			text-align: center;
+			color: #fff;
+		}
+		.btn {
+			padding: 10px;
+			background: $branddarkblue;
+			color: #fff;
+			border-radius: 0px;
+			border-color: #fff;
+			text-transform: uppercase;
+
+			&:hover {
+				color: $branddarkblue;
+				background: #fff;
+			}
+		}
+	}
+}
 
 @media screen and (max-width: 400px) {
 	.container {
