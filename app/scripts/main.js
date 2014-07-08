@@ -4,4 +4,13 @@ $(document).ready(function() {
   window.router = new MainRouter();
   Backbone.history.start();
 
+  $(".js-request-quote-btn").on("click", function() {
+    window.router.navigate("/about", {
+      trigger: true
+    });
+    $('html, body').animate({
+      scrollTop: $('#quote-form').offset().top - 15
+    }, 1000);
+  });
+
 });

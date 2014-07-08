@@ -7,6 +7,7 @@ var AppView = Backbone.View.extend({
     "click .js-nav-one": "moveToOne",
     "click .js-nav-two": "moveToTwo",
     "click .js-nav-three": "moveToThree"
+
   },
 
   initialize: function() {

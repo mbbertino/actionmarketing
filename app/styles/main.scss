@@ -8,7 +8,7 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/vendor/assets/fonts/
 
 $brandblue:rgb(169, 214, 241); // Primary
 $brandyellow:rgb(242, 209, 49); //Secondary
-$brandblack:rgb(39, 36, 26);
+$brandblack: rgb(39, 36, 26);
 $brandred:rgb(243, 89, 73); //Accent
 $brandwhite:rgb(244, 244, 241);
 $branddarkblue:rgb(20, 85, 150);
@@ -30,6 +30,8 @@ body {
 }
 
 .container {
+	padding-bottom: 15px;
+	margin: 15px auto; 
 	background: #fff;
 	box-shadow: 0px 0px 25px #B5B5B5;
 }
@@ -66,7 +68,7 @@ body {
     .container-fluid {
     	
     	.navbar-right {
-    		margin-top: 10px;
+    		margin-top: 12px;
     		font-size: 14px;
 
     		@media screen and (max-width: 400px) {
@@ -74,20 +76,25 @@ body {
 				}
 
     	}
+
     	.link-border {
-    		border-bottom: 2px solid $branddarkblue;
+    		font-size: 16px;
+    		font-weight: bold;
+    		text-decoration: underline;
     	}
 
     	.action {
     		background: $branddarkblue;
 
     		a {
+    			font-size: 12px;
 	    		color: #fff;    			
 
 	    		&:hover {
+	    			cursor: pointer;
 	    			background: #fff;
 	    			color: $branddarkblue;
-	    			outline: 1px solid $branddarkblue;
+	    			outline: 2px solid $branddarkblue;
 	    		}
     		}
     	}
@@ -115,6 +122,10 @@ body {
 	margin: 15px 0px;
 	background: $brandwhite;
 	box-shadow: 0px 0px 10px #B5B5B5;
+
+	@media screen and (max-width: 599px) {
+		display: none;
+	}
 	
 	button {
 		background: $branddarkblue;
@@ -247,6 +258,7 @@ body {
 			box-shadow: 0px 0px 20px $brandwhite;
 			border: 2px solid $brandwhite;
 			margin: 5px 0px;
+			padding-left: 0px;
 
 
 			.file-inner-box {
@@ -272,8 +284,8 @@ body {
 
 			.icon-box {
 				margin: 5px 0px;
-				padding: 5px 0px;
-				border-right: 1px solid $branddarkblue;
+				padding: 5px;
+				border-right: 1px solid $branddarkblue;				
 
 				.file-icons {
 					color: $branddarkblue;
@@ -339,18 +351,18 @@ body {
 
 
 			li {
-				cursor: pointer;
-				text-transform: uppercase;
-				font-size: 14px;
-				padding: 5px 0px;
+					padding: 5px 0px;
 
-				&:hover	{
-					color: $brandyellow;
-				}
+				a {	
+					color: #fff;				
+					cursor: pointer;
+					text-transform: uppercase;
+					font-size: 14px;
 
-				small {
-					font-size: 12px;
-					display: block;
+					&:hover	{
+						text-decoration: none;
+						color: $brandred;
+					}
 				}
 			}
 		}
@@ -648,17 +660,15 @@ body {
 		}
 
 		.service-block {
-			// height: 300px;
 			margin: 15px 0;
 			padding: 0 15px;
 
 			.panel {
 				border: none;
-				height: 100%;
-				box-shadow: none;
+				height: 100%;				
 				margin-bottom: 0px;
 				@include border-radius(0px);
-				box-shadow: 0px 0px 10px #B5B5B5;
+				box-shadow: 0px 0px 5px #B5B5B5;
 
 				h3 {
 					border-bottom: 2px solid $brandblack;
@@ -666,7 +676,7 @@ body {
 
 				&:hover {
 					cursor: pointer;
-					box-shadow: 0px 0px 10px $branddarkblue;
+					box-shadow: 0px 0px 5px $branddarkblue;
 
 					h3 {
 						// border-bottom: 2px solid #fff;
@@ -696,34 +706,76 @@ body {
 }
 
 .about-page {
+	padding: 15px 0px 0px;
+
+
 
 	.map-contact {
+		margin-bottom: 15px;
 		padding: 0px;
-		height: 300px;
+		height: 350px;
+
 		.mapcanvas {
 			height: 100%;
 		}
 	}
+
+	.overview {
+		height: 350px;
+	}
+
+	.prev-clients {
+		box-shadow: 0px 0px 5px #B5B5B5;
+		padding-bottom: 15px;
+		overflow: hidden;
+		color: $branddarkblue;
+		text-align: center;
+
+		h2 {
+			padding-top: 15px;
+			padding-left: 15px;
+		}
+
+		.client-logo-box {
+			position: relative;
+			height: 300px;
+
+			img {
+				position: absolute;
+		    margin: auto;
+		    top: 0;
+		    left: 0;
+		    right: 0;
+		    bottom: 0;
+			}
+		}
+
+	}
+
 	.quote {
-		background: $branddarkblue;
+		box-shadow: 0px 0px 5px #B5B5B5;
 		padding: 15px 15px;
+		margin: 15px 0px;
 
 		input {
 			margin: 15px 0px;
 			padding: 10px;
-			border: none;
+			border: 1px solid $branddarkblue;
 		}
+
 		textarea {
-			border: none;
-			height: 177px;
+			border: 1px solid $branddarkblue;
+			height: 183px;
 			padding: 10px;
 			margin: 15px 0px 30px;			
 		}
-		h3 {
+
+		h2 {
 			margin: 15px 0px;
 			text-align: center;
-			color: #fff;
+			color: $branddarkblue;
 		}
+
 		.btn {
 			padding: 10px;
 			background: $branddarkblue;

@@ -12,11 +12,15 @@ var AboutView = Backbone.View.extend({
     $('.content-wrapper').html(this.el)
     this.render()
 
+    $('.link').removeClass('link-border')
+    $('.link-about').addClass('link-border')
+
     var map;
 
     function initialize() {
       var myLatlng = new google.maps.LatLng(26.924099, -80.144593);
       var mapOptions = {
+        scrollwheel: false,
         zoom: 14,
         center: myLatlng
       };
@@ -30,7 +34,7 @@ var AboutView = Backbone.View.extend({
       });
     }
 
-    google.maps.event.addDomListener(window, 'load', initialize);
+    initialize()
 
   },
 
