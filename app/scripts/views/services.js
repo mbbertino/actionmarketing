@@ -5,7 +5,8 @@ var ServicesView = Backbone.View.extend({
   events: {
     "click .js-nav-one": "moveToOne",
     "click .js-nav-two": "moveToTwo",
-    "click .js-nav-three": "moveToThree"
+    "click .js-nav-three": "moveToThree",
+    'click .js-request-quote': "request"
   },
 
   initialize: function() {
@@ -28,6 +29,12 @@ var ServicesView = Backbone.View.extend({
     }
 
     window.onscroll = doThisStuffOnScroll;
+  },
+
+  request: function() {
+    window.router.navigate("/request", {
+      trigger: true
+    });
   },
 
   moveToOne: function() {

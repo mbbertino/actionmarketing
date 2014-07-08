@@ -50,6 +50,19 @@ body {
 
 .carousel-control {
 	opacity: 0;
+
+	span {
+		color: $branddarkblue;		
+	}
+
+	&:hover {
+		background: none;		
+
+		span {			
+			opacity: 1;
+			color: $branddarkblue;		
+		}
+	}
 }
 
 /* Custom page header */
@@ -171,6 +184,7 @@ body {
 		.delete {
 			background: $brandyellow;
 			color: $brandwhite;
+
 			&:hover {
 				outline: 1px solid $brandyellow;
 				background: #fff;
@@ -283,7 +297,7 @@ body {
 			}
 
 			.icon-box {
-				margin: 5px 0px;
+				margin: 10px 0px 5px;
 				padding: 5px;
 				border-right: 1px solid $branddarkblue;				
 
@@ -556,6 +570,7 @@ body {
 	}
 
 	.docs-sidebar {
+		padding-bottom: 5px;
 		overflow: hidden;
 		margin-top: 5px;
 		width: 200px;			
@@ -721,37 +736,25 @@ body {
 	}
 
 	.overview {
-		height: 350px;
-	}
+		padding: 30px 15px 0px;
+		color: #fff;
+		background: $branddarkblue;
 
-	.prev-clients {
-		box-shadow: 0px 0px 5px #B5B5B5;
-		padding-bottom: 15px;
-		overflow: hidden;
-		color: $branddarkblue;
-		text-align: center;
-
-		h2 {
-			padding-top: 15px;
-			padding-left: 15px;
+		h1 {
+			margin: 0px;
+			text-transform: uppercase;
+			padding-bottom: 15px;
+			border-bottom: 1px solid #fff;
 		}
 
-		.client-logo-box {
-			position: relative;
-			height: 300px;
-
-			img {
-				position: absolute;
-		    margin: auto;
-		    top: 0;
-		    left: 0;
-		    right: 0;
-		    bottom: 0;
-			}
+		p {
+			letter-spacing: 1px;
+			color: #fff;
+			padding: 15px;
+			font-size: 18px;
 		}
-
 	}
-
+	
 	.quote {
 		box-shadow: 0px 0px 5px #B5B5B5;
 		padding: 15px 15px;
@@ -772,7 +775,7 @@ body {
 
 		h2 {
 			margin: 15px 0px;
-			text-align: center;
+			text-align: left;
 			color: $branddarkblue;
 		}
 

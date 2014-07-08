@@ -53,7 +53,7 @@
 			            <li class="link link-services"><a  href="#services" role="button">Services</a></li>
 			            <li class="link link-client"><a  href="#client-login" role="button">Client Login</a></li>
 			            <li class="link link-about"><a  href="#about" role="button">About</a></li>
-			            <li class="link link-quote action js-request-quote-btn"><a role="button">request a quote</a></li>
+			            <li class="link link-quote action"><a href="#request" role="button">request a quote</a></li>
 			          </ul>				          
 			        </div><!-- /.nav-collapse -->
 			      </div>
@@ -66,7 +66,7 @@
           	<div class="foot-top col-xs-12">
           		<div class="col-sm-3 logo-section">
           			<img class="logo-big" src="images/targetSmall.png">
-          			<button class="col-xs-12 btn btn-primary js-request-quote-btn">Request a quote</button>
+          			<a href="#request" role="button"><button class="col-xs-12 btn btn-primary">Request a quote</button></a>
           		</div>
           		<div class="col-sm-4 foot-copy">
           			<h4>Contact Us</h4>
@@ -224,7 +224,7 @@
 								    </div>
 								  </div>
 									<div class="col-xs-12" style="padding-left: 10px;">
-									  <button class="btn btn-primary">Request a quote</button>
+									  <button class="btn btn-primary js-request-quote">request a quote</a></button>
 									</div>
 								</div>							
 							</div>
@@ -415,13 +415,13 @@
 						<input class="clientname col-xs-12 js-clientname" placeholder="CLIENTNAME"></input>
 						<input class="email col-xs-12 js-email" placeholder="EMAIL"></input>
 						<input class="id col-xs-12 js-id hidden" disabled></input>
-						<div class="col-xs-4">
+						<div class="col-xs-4 btn-wrapper">
 							<button class="col-xs-12 js-edit">Save Changes</button>
 						</div>
-						<div class="col-xs-4">
+						<div class="col-xs-4 btn-wrapper">
 							<button class="col-xs-12 js-delete delete">Delete User</button>
 						</div>
-						<div class="col-xs-4">
+						<div class="col-xs-4 btn-wrapper">
 							<button class="col-xs-12 js-back back">Cancel/Back</button>						
 						</div>
 					</div>
@@ -435,10 +435,10 @@
 							<h2 class="pull-left"><%= Parse.User.current().attributes.username %><small> Manage Users Below</small></h2>
 							<button class="js-logout logout pull-right">LOGOUT</button>
 							<div class="upload-section col-xs-12">
-								<div class="col-xs-6">
+								<div class="col-xs-6 btn-wrapper">
 									<button class="col-xs-12 js-create-view">Create User</button>
 								</div>
-								<div class="col-xs-6">
+								<div class="col-xs-6 btn-wrapper">
 									<button class="col-xs-12 js-edit-delete">Edit/Delete User</button>
 								</div>
 							</div>						
@@ -482,8 +482,8 @@
 				<script type="text/template" id="file-view-template">
 					<div class="col-xs-12 file-outer-box">
 						<div class="icon-box col-xs-2">
-							<a href="<%= this.model.attributes.file._url %>"><i class="typcn typcn-download file-icons"></i></a>
-							<i class="typcn typcn-trash file-icons js-destroy"></i>
+							<a href="<%= this.model.attributes.file._url %>"><i class="glyphicon glyphicon-download file-icons"></i></a>
+							<i class="glyphicon glyphicon-trash file-icons js-destroy"></i>
 						</div>
 						<div class="file-inner-box col-xs-10">
 							<h4 class="fileName"><a href="<%= this.model.attributes.file._url %>"><%= this.model.get('fileName') %></a></h4>
@@ -493,28 +493,32 @@
 					</div>					
 				</script>	
 
+				
 
 				<script type="text/template" id="about-template">
 					<div class="overview col-xs-12">
-						<div class="mission-stmt"></div>
+						<h1 class="col-xs-12">What you should know about us</h1>
+						<p class="col-xs-12">
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+							consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+							cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+							proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						</p>
+					</div>							
+										
+					<div class="map-contact col-xs-12">
+						<div class="mapcanvas" id="map-canvas"></div>
 					</div>
+				</script>
 
-					<div class="prev-clients col-xs-12">
-						<h2>Clients</h2>
-						<div class="client-logo-box col-sm-4">
-							<img class="login-logo" src="images/Anthony's_logo.png">
-						</div>
-						<div class="client-logo-box col-sm-4">
-							<img class="login-logo" src="images/SkyKing_logo.png">
-						</div>
-						<div class="client-logo-box col-sm-4">
-							<img class="login-logo" src="images/SouthFLFair.png">
-						</div>
-					</div>					
-					
+				<script type="text/template" id="request-template">
 					<div class="quote col-xs-12" id="quote-form">
 						<div class="col-xs-12">
-							<h2>Request A Quote</h2>
+							<h2>
+								Request A Quote
+							</h2>
 						</div>
 						<div class="col-sm-6">
 							<input placeholder="FIRST NAME" class="col-xs-12">
@@ -527,12 +531,22 @@
 							<button class="btn js-request request col-xs-12">send request</button>
 						</div>
 					</div>
-
-					<div class="map-contact col-xs-12">
-						<div class="mapcanvas" id="map-canvas"></div>
-					</div>
 				</script>
-				<div class="client-logo"></div>
+
+					<!-- <div class="prev-clients col-xs-12">
+						<h2>Clients</h2>
+						<div class="client-logo-box col-sm-4">
+							<img class="login-logo" src="images/Anthony's_logo.png">
+						</div>
+						<div class="client-logo-box col-sm-4">
+							<img class="login-logo" src="images/SkyKing_logo.png">
+						</div>
+						<div class="client-logo-box col-sm-4">
+							<img class="login-logo" src="images/SouthFLFair.png">
+						</div>
+					</div>	 -->
+
+
 
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
@@ -586,6 +600,7 @@
         <script src="scripts/views/editdeleteuser.js"></script>
         <script src="scripts/views/userlist.js"></script>
         <script src="scripts/views/about.js"></script>
+        <script src="scripts/views/quote.js"></script>
         <!-- endbuild -->
 </body>
 </html>
